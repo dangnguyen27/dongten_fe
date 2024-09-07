@@ -1,6 +1,6 @@
-# G99
+# Dongten.net
 
-Thanh toán online Gmobile Payment
+Trang website dongten.net
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
