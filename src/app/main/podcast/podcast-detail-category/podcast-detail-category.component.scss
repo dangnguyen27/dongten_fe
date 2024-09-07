@@ -1,0 +1,47 @@
+.cover {
+
+
+    /* Gradient/01 */
+    background: linear-gradient(0deg, #900D14 0%, #AE1017 100%);
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    height: 250px;
+
+    .logo-js {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        
+        background: url("/assets/images/icons/head_podcast.png");
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        display: block;
+        right: 0;
+        clip: rect(125px, 500px, 374px, 00px);
+        top: -60px;
+    }
+
+}
+.container {
+    margin-top: -8rem;
+    padding-bottom: 200px;
+}
+.category {
+    .links {
+        .list-links {
+            bottom: 80px;
+        }
+        .border-top {
+            bottom: 0;
+        }
+    }
+    .item-footer {
+        .right {
+            margin-left: auto;
+			order: 2;
+        }
+    }
+}

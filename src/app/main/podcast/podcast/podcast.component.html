@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="mb-4 d-flex align-items-end section-title">
+            <h2 class="p-0 m-0 main-title fw-bold">Podcast mới nhất</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3" *ngFor="let item of newest" routerLink="/podcast/{{ item.title }}">
+            <div class="podcast-newest-item">
+                <div>
+                    <img src="{{ item.image }}" alt="" class="rounded w-100">
+                    <small class="text-main-color">Bẻ ra và trao đi</small>
+                </div>
+                <div>
+                    <h2 class="fw-bold">{{ item.title }}</h2>
+                    <p>{{ item.description }}</p>
+                </div>
+                <div class="d-flex align-items-center item-footer">
+                    <div class="left">
+                        <span class="text-secondary me-2"><small>05/09/2024</small></span>
+                        <span class="ms-2 me-2 text-secondary">•</span>
+                        <span class="text-secondary"><small>1 phút 20 giây</small></span>
+                    </div>
+                    <div class="right">
+                        <a href="" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 mb-3">
+            <div class="float-start">
+                <h2 class="p-0 m-0 main-title fw-bold">Chủ đề nổi bật</h2>
+            </div>
+            <div class="float-end">
+                <a href="" routerLink="/podcast/categories" class="btn btn-custom-3d">Xem tất cả</a>
+            </div>
+        </div>
+        <div class="col-3" *ngFor="let item of highlightCategory" routerLink="/podcast/categories/{{item.name}}">
+            <img src="{{ item.icon[0].url }}" alt="" class="rounded w-100">
+            <div class="mt-3">
+                <h2 class="fw-bold mb-1">{{ item.name }}</h2>
+                <div class="d-flex align-items-center">
+                    <img src="/assets/images/icons/headphone.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row heading">
+        <div class="col-4">
+            <img src="{{ item.image }}" alt="" class="rounded w-100">
+        </div>
+        <div class="col-8 position-relative">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-secondary" routerLink="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a  class="text-secondary" href="/podcast">Podcast</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ item.title }}</li>
+                </ol>
+            </nav>
+            <h2 class="fw-bold mb-3">{{ item.title }}</h2>
+            <div class="d-flex">
+                <button class="btn btn-play me-4">
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.2111 7.60557L2.73666 1.86833C1.93878 1.46939 1 2.04958 1 2.94164V14.0584C1 14.9504 1.93878 15.5306 2.73666 15.1317L14.2111 9.39443C14.9482 9.0259 14.9482 7.9741 14.2111 7.60557Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white ms-2">NGHE</span>
+                </button>
+
+                <a href="" class="text-secondary">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.4409 9.55881L9.55859 15.4412" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.3824 13.9706L21.3235 11.0294C23.354 8.99895 23.354 5.70693 21.3235 3.67647V3.67647C19.2931 1.64601 16.001 1.64601 13.9706 3.67647L11.0294 6.61765M6.61765 11.0294L3.67647 13.9706C1.64601 16.001 1.64601 19.2931 3.67647 21.3235V21.3235C5.70693 23.354 8.99895 23.354 11.0294 21.3235L13.9706 18.3824" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round"/>
+                        </svg>                        
+                    COPY LINK</a>
+            </div>
+    
+                <div class="position-absolute w-100">
+                <div class="border-top w-100 mb-4">
+            
+                </div>
+                <div class="d-flex align-items-center">
+                    <h5 class="p-0 mb-0 me-5">Liên kết:</h5>
+                    <a href="" class="text-black me-3"><img src="/assets/images/icons/google_podcast.svg" alt="me-2">Google
+                        Podcast</a>
+                    <a href="" class="text-black me-3"><img src="/assets/images/icons/youtube_podcast.svg" class="me-2"
+                            alt="">Youtube</a>
+                    <a href="" class="text-black me-3"><img src="/assets/images/icons/spotify_podcast.svg" class="me-2"
+                            alt="">Spotify</a>
+                    <a href="" class="text-black me-3"><img src="/assets/images/icons/apple_podcast.svg" class="me-2" alt="">Apple
+                        Podcast</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="fw-bold mb-1">Nội dung Podcast</h2>
+        </div>
+        <div class="col-12 mt-3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies nisi nec efficitur varius. Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in quam. Etiam euismod nisi mauris, vel bibendum libero consequat ac. Ut rhoncus in eros vitae consectetur. Etiam bibendum orci dapibus nibh tempus, nec rhoncus odio venenatis. Curabitur id sodales tellus. Vestibulum facilisis tincidunt sollicitudin. Mauris sit amet orci vel sapien convallis iaculis ac id est. In posuere iaculis leo ut pulvinar. Vestibulum ac dolor faucibus, suscipit lorem in, ultrices ante. Cras porttitor eros id tristique gravida.
+
+Aenean vel mauris in urna pretium molestie sed vehicula nibh. Aliquam congue eget orci sit amet finibus. Aliquam ultrices ullamcorper neque, eu posuere elit blandit in. Aliquam in mi augue. Proin rutrum, libero quis malesuada commodo, turpis velit bibendum urna, vel ornare nisl velit rutrum est. Cras vestibulum elit eget massa mattis, sed ultricies mi pretium. Cras condimentum nulla auctor dui tempor, quis fermentum urna tristique. Sed id lacinia massa, quis ornare quam. Aenean consequat ex in iaculis rhoncus. Sed tempus vitae nisi aliquam pulvinar. Vestibulum orci justo, vehicula eu leo id, malesuada gravida nunc. Ut ac felis eu arcu semper aliquet at nec arcu. Proin dui metus, efficitur at quam sed, iaculis maximus ligula. Pellentesque finibus ac arcu at vulputate. Aliquam vehicula augue in lectus feugiat semper. Sed vestibulum magna tellus.
+
+Maecenas venenatis quam nulla. Vivamus vel tortor neque. Mauris et convallis lectus. Donec imperdiet massa non arcu aliquam malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed lobortis quis lacus quis tristique. Morbi ipsum risus, elementum id finibus id, vehicula vel orci.
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="mb-4 d-flex align-items-end section-title">
+            <h2 class="p-0 m-0 main-title fw-bold">Cùng chủ đề</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3" *ngFor="let item of relatedItems">
+            <div class="podcast-newest-item">
+                <div>
+                    <img src="{{ item.image }}" alt="" class="rounded w-100">
+                    <small class="text-main-color">Bẻ ra và trao đi</small>
+                </div>
+                <div>
+                    <h2 class="fw-bold">{{ item.title }}</h2>
+                    <p>{{ item.description }}</p>
+                </div>
+                <div class="d-flex align-items-center item-footer">
+                    <div class="left">
+                        <span class="text-secondary me-2"><small>05/09/2024</small></span>
+                        <span class="ms-2 me-2 text-secondary">•</span>
+                        <span class="text-secondary"><small>1 phút 20 giây</small></span>
+                    </div>
+                    <div class="right">
+                        <a href="" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

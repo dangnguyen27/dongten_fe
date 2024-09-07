@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import 'ngx-toastr/toastr-bs5-alert';
+@import 'assets/scss/variables/variables';
+
+@font-face {
+    font-family: "SVN Poppins";
+    src: url("assets/fonts/svn_poppins/SVN-Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: "SVN Poppins";
+    src: url("assets/fonts/svn_poppins/SVN-Poppins-RegularItalic.ttf");
+	font-style: italic;
+}
+@font-face {
+    font-family: "SVN Poppins";
+    src: url("assets/fonts/svn_poppins/SVN-Poppins-SemiBold.ttf");
+	font-weight: bold;
+}
+@font-face {
+    font-family: "SVN Poppins";
+    src: url("assets/fonts/svn_poppins/SVN-Poppins-SemiBoldItalic.ttf");
+	font-weight: bold;
+	font-style: italic;
+}
+
+body {
+	background: #F9F9F9 !important;
+	font-family: "SVN Poppins", sans-serif;
+	font-optical-sizing: auto;
+	// font-weight: 300;
+	font-size: 13px;
+	// line-height: 22px;
+	height: 100%;
+
+	a {
+		text-decoration: none;
+	}
+
+	h5 {
+		font-size: 1.05rem;
+	}
+
+	h4 {
+		font-size: 1.1rem;
+	}
+
+	h3 {
+		font-size: 1.2rem;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+	}
+
+	h1 {
+		font-size: 1.3rem;
+	}
+
+	.main-title {
+		font-size: 1.8rem;
+	}
+
+	b {
+		font-weight: 600;
+	}
+
+	.btn-primary {
+		color: #000;
+		background-color: #FFC425;
+		border: #FFC425;
+	}
+
+	.btn-primary:hover {
+		background-color: #c59512;
+		border: #c59512;
+	}
+
+	.text-secondary {
+		color: #C2C2C2 !important;
+	}
+
+	.custom-scrollbar {
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-track {
+		padding: 2px 0;
+		background-color: #616161;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: #9E9E9E;
+	}
+
+	.btn-custom-3d {
+		background: #fff;
+		border-radius: 5px;
+		border-color: #757575;
+		box-shadow: inset 0px -5px 0px 0px #757575;
+
+		&:hover {
+			background: #fff;
+			border-color: #757575;
+			box-shadow: 0px 5px 0px 0px #fff;
+		}
+	}
+
+	.card {
+		&:hover {
+			box-shadow: 1px 19px 23px 4px rgba(138, 138, 138, 0.51);
+			-webkit-box-shadow: 1px 19px 23px 4px rgba(138, 138, 138, 0.51);
+			-moz-box-shadow: 1px 19px 23px 4px rgba(138, 138, 138, 0.51);
+		}
+	}
+	.text-main-color {
+		color: $main-color;
+	}
+	.hover-main-color {
+		&:hover {
+			color: $main-color;
+		}
+	}
+	.play-action {
+		&:hover {
+			img {
+				filter: brightness(0) saturate(100%) invert(13%) sepia(69%) saturate(4155%) hue-rotate(334deg) brightness(80%) contrast(127%); 
+			  }
+		}
+	}
+	.podcast-newest-item {
+		.item-footer {
+			.right{
+				margin-left: auto;
+				order: 2;
+			}
+		}
+	}
+
+	.icon-custom {
+		display: inline;
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		background-size: cover;
+	}
+	.icon-dongten {
+		background-image: url("/assets/images/icons/dongten.svg");
+	}
+	.icon-suvu {
+		background-image: url("/assets/images/icons/suvu.svg");
+	}
+	.icon-linhdao {
+		background-image: url("/assets/images/icons/linhdao.svg");
+	}
+	.icon-suytu {
+		background-image: url("/assets/images/icons/suytu.svg");
+	}
+	.icon-podcast {
+		background-image: url("/assets/images/icons/podcast.svg");
+	}
+	.icon-news {
+		background-image: url("/assets/images/icons/news.svg");
+	}
+	.icon-search {
+		background-image: url("/assets/images/icons/search.svg");
+	}
+
+}

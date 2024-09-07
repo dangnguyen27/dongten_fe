@@ -1,0 +1,431 @@
+<form [formGroup]="formGroup">
+<div class="content-wrapper container-xxl p-0" *blockUI="'section-block'">
+    <div class="content-body">      
+  
+      <div class="">
+        <div class="row">
+            <div class="col-12">
+                <h4>THANH TOÁN ONLINE</h4>
+            </div>
+        </div>
+          
+        <div class="row mb-2">
+          <div class="col-12 col-md-3"></div>
+          <div class="col-12 col-md-9">
+            <div class="grid-wrapper grid-col-auto">
+              <label for="radio-card-1" class="radio-card">
+                <input
+                  type="radio"
+                  name="service"
+                  id="radio-card-1"
+                  checked
+                  value="TOPUP"
+                  [attr.disabled]="currentBillInfo ? '' : null"
+                  formControlName="service"
+                />
+                <div class="card-content-wrapper service">
+                  <div class="row">
+                    <div class="col-2">
+                      <span class="check-icon"></span>
+                    </div>
+                    <div class="col-10">
+                      <div class="card-content text-center">
+                        <div>
+                          <img class="single-color" src="assets/images/icons/icon_bank.svg" alt="" />
+                        </div>
+                        <div>
+                          <label class="d-block">
+                            Nạp tiền/thanh toán cước
+                          </label>
+                        </div>                        
+                      </div>
+                    </div>
+                  </div>                  
+                  
+                </div>
+              </label>
+
+              <label for="radio-card-2" class="radio-card">
+                <input type="radio" name="service"
+                value="BUY_CARD"
+                [attr.disabled]="currentBillInfo ? '' : null"
+                  formControlName="service"
+                id="radio-card-2" />
+                <div class="card-content-wrapper service">
+                  <div class="row">
+                    <div class="col-2">
+                      <span class="check-icon"></span>
+                    </div>
+                    <div class="col-10">
+                      <div class="card-content text-center">
+                        <div>
+                          <img
+                          class="single-color"
+                          src="assets/images/icons/icon_credit.svg"
+                          alt=""
+                          />
+                        </div>
+                        <div>
+                          <label class="d-block">Mua thẻ cào</label>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>                                    
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <div class="p-2">
+             
+  
+              <div class="row mb-2">
+                <div class="col-12 col-md-3">
+                  <span><b>Dịch vụ: </b></span>
+                </div>
+                <div class="col-12 col-md-9">
+                  <!-- <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="code"
+                      id="gip"
+                      value="GIP"
+                      [attr.disabled]="currentBillInfo ? '' : null"
+                      formControlName="code"
+                      checked
+                    />
+                    <label class="form-check-label" for="gip">GIP</label>
+                  </div> -->
+  
+                  <div class="form-check form-check-inline ml-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="code"
+                      id="gsim"
+                      value="GSIM"
+                      [attr.disabled]="currentBillInfo ? '' : null"
+                      formControlName="code"
+                    />
+                    <label class="form-check-label" for="gip">GSIM</label>
+                  </div>  
+                  
+                  <div class="form-check form-check-inline ml-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="code"
+                      value="TELECOM"
+                      [attr.disabled]="currentBillInfo ? '' : null"
+                      formControlName="code"
+                    />
+                    <label class="form-check-label" for="gip">Nạp tiền điện thoại</label>
+                  </div> 
+                  
+                  <!-- <div class="form-check form-check-inline ml-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="code"
+                      value="SIM_MOBI"
+                      formControlName="code"
+                    />
+                    <label class="form-check-label" for="gip">Sim 4G hợp tác Mobifone</label>
+                  </div> 
+
+                  <div class="form-check form-check-inline ml-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="code"
+                      value="SIM_VINA"
+                      formControlName="code"
+                    />
+                    <label class="form-check-label" for="gip">Sim 4G hợp tác Vinaphone</label>
+                  </div>  -->
+                </div>
+              </div>
+  
+              <div class="row mb-2">
+                <div class="col-12 col-md-3">
+                  <span
+                    ><b
+                      >Thông tin thanh toán theo:
+                    </b></span
+                  >
+                </div>
+                <div class="col-12 col-md-9">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="info"
+                      id="number"
+                      value="optionNumber"
+                      [attr.disabled]="currentBillInfo ? '' : null"
+                      checked
+                    />
+                    <label class="form-check-label" for="number"
+                      >Số đại diện</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline ml-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="info"
+                      id="code"
+                      [attr.disabled]="currentBillInfo ? '' : null"
+                      value="optionCode"
+                    />
+                    <label class="form-check-label" for="code"
+                      >Mã khách hàng</label
+                    >
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mb-2">
+                <div class="col-12 col-md-3">
+                  <span><b>Số đại diện/Mã KH: </b></span>
+                </div>
+                <div class="col-12 col-md-9">
+                  <div class="pl-0">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        [attr.disabled]="currentBillInfo ? '' : null"
+                        placeholder="Nhập số đại diện/mã KH"
+                        formControlName="bill_id"                     
+                      />
+                      <div
+                          *ngIf="submitted && f.bill_id.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.bill_id.errors.required">
+                            Vui lòng nhập trường này
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <div class="col-12 col-md-3">
+                  <span><b>Số tiền: </b></span>
+                </div>
+                <div class="col-12 col-md-9">  
+                  <div class="pl-0">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Nhập số tiền"
+                        mask="separator"
+                        thousandSeparator=","   
+                        [attr.disabled]="currentBillInfo ? '' : null"
+                        formControlName="amount"                     
+                      />
+
+                      <div
+                          *ngIf="submitted && f.amount.errors"
+                          class="invalid-feedback"
+                        >
+                          <div *ngIf="f.amount.errors.required">
+                            Vui lòng nhập trường này
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="!currentBillInfo">
+                          <div class="col-4 mb-1 mt-1" *ngFor="let itemM of listMoney">
+                            <button type="button"
+                            [ngClass]="f.amount.value == itemM ? 'btn w-100 btn-outline-secondary btn-money-actived' : 'btn-money btn w-100 btn-outline-secondary'"
+                             (click)="onSelectMoney(itemM)">{{ itemM | number }}</button>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <div class="col-12 col-md-3">
+                  <span><b>Phương thức thanh toán: </b></span>
+                </div>
+                <div class="col-12 col-md-9">
+                  <div class="grid-wrapper grid-col-auto" *ngIf="!isMobile">
+                    <label class="radio-card" *ngFor="let item of listPaymentMethod">
+                      <input type="radio" name="payment_method" formControlName="payment_method" value="{{ item.code }}" id="radio-card-3" />
+                      <div class="card-content-wrapper payment-method">
+                        <div class="row">
+                          <div class="col-2">
+                            <span class="check-icon"></span>
+                          </div>
+                          <div class="col-10">
+                            <div class="card-content">
+                              <img [src]=" getUrl(item.icon) " alt="" />
+                              <label class="d-block">{{ item.title }}</label>
+                            </div>
+                          </div>
+                        </div>
+                  
+                  
+                      </div>
+                    </label>
+                  
+                    <!-- <label class="radio-card">
+                      <input type="radio" name="payment_method" formControlName="payment_method" value="ONLINE_PAYMENT_GATEWAY" />
+                      <div class="card-content-wrapper payment-method">
+                        <div class="row">
+                          <div class="col-2">
+                            <span class="check-icon"></span>
+                          </div>
+                          <div class="col-10">
+                            <div class="card-content">
+                              <img src="assets/images/icons/payment.png" alt="" />
+                              <label class="d-block">Cổng thanh toán</label>
+                            </div>
+                          </div>
+                        </div>
+                  
+                  
+                      </div>
+                    </label> -->
+                  </div>
+
+                  <ng-container *ngIf="isMobile">
+                    <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        >
+                        <div ngxSlickItem class="slide" *ngFor="let item of listPaymentMethod">
+                          <!-- @for (item of listPaymentMethod; track item.icon) { -->
+                            <label class="radio-card payment-method">
+                              <input type="radio" name="payment_method" formControlName="payment_method" value="{{ item.code }}" id="radio-card-3" />
+                              <div class="card-content-wrapper ">
+                               
+                                  <div class="row">
+                                    <div class="col-2">
+                                      <span class="check-icon"></span>
+                                    </div>
+                                    <div class="col-10">
+                                      <div class="card-content">
+                                        <img [src]=" getUrl(item.icon) " alt="" />
+                                        <label class="d-block">{{ item.title }}</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                                                                    
+                              </div>
+                            </label>
+                          <!-- } -->
+                          
+                        </div>
+                    </ngx-slick-carousel>
+                  </ng-container>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="col-12">
+                  <span><b>Kênh hộ trợ khách hàng: </b></span>
+                </div>
+              </div>
+  
+              <div class="row contact">
+                <div class="col-12">
+                  <div class="d-flex">
+                    <div class="row me-3 me-md-5">
+                      <div class="col-3">
+                        <img src="/assets/images/icons/icon_phone.svg" alt="">
+                      </div>
+                      <div class="col-9">
+                        <div class="col">
+                          <div class="col">CSKH di động</div>
+                          <div class="col">
+                            <b>0598247247</b>
+                          </div>
+                        </div>
+                      </div>                                              
+                    </div>
+  
+                    <div class="row ms-3 ms-md-3">
+                      <div class="col-3">
+                        <img src="/assets/images/icons/icon_mailbox.svg" alt="">
+                      </div>
+                      <div class="col-9">
+                        <div class="col">
+                          <div class="col">Gmail</div>
+                          <div class="col">
+                            <b>dvkh@gmobile.com</b>
+                          </div>
+                        </div>
+                      </div>                                              
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-12 col-md-4">
+            <div class="row">
+                
+                <div class="col-12">
+                <div class="border rounded p-3 custom-card">
+                    <div class="mb-2">
+                    Số tiền:
+                    <span class="float-end"> <b *ngIf="f.amount.value">{{ f.amount.value | number }}<sup>VND</sup></b></span>
+                    </div>
+                    <div class="mb-2">
+                    Phí:
+                    <span class="float-end"> <b>0</b></span>
+                    </div>
+                    <div class="mb-2">
+                    Chiết khấu:
+                    <span class="float-end"> <b>0</b></span>
+                    </div>
+                    <div class="mt-2 mb-5 pt-3 sum-amount">
+                    <h5>
+                        Tổng tiền :
+                        <span class="pull-right"> <b *ngIf="f.amount.value">{{ f.amount.value | number }}<sup>VND</sup></b></span>
+                    </h5>
+                    <div class="text-center"> <b *ngIf="f.amount.value">{{ f.amount.value | numberToText }} đồng </b></div>
+                    </div>
+                    <div class="text-center">
+                    <button
+                        type="button"
+                        class="btn btn-primary m-2"
+                        (click)="onSubmit()"
+                    >
+                        ĐỒNG Ý THANH TOÁN
+                    </button>
+                    </div>
+    
+                    <h6 class="text-center">
+                    Nhấn vào "Đồng ý Thanh toán" đồng nghĩa với việc Quý khách đồng
+                    ý với điều khoản mua hàng và thanh toán của Gmobile.
+                    </h6>
+                </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row fixed-bottom bg-white ps-5 pe-5 pt-1 pb-1">
+    <button type="button" class="btn btn-primary m-2" (click)="onSubmit()">
+      ĐỒNG Ý THANH TOÁN
+    </button>
+  </div>
+</form>

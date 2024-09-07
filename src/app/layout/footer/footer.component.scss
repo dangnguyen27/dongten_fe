@@ -1,0 +1,19 @@
+.footer-content {
+    .logo {
+        height: auto;
+        min-height: 200px;
+    }
+    .item-left {
+        padding: 50px 0;
+        left: 0;
+        bottom: 0;
+        img {
+            width: 130px;
+        }
+    }
+    .item-right {
+        padding: 50px 0;
+        right: 0;
+        bottom: 0;
+    }
+}
