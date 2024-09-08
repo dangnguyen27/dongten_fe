@@ -27,6 +27,11 @@
 	font-style: italic;
 }
 
+@font-face {
+    font-family: "SaiGon1985";
+    src: url("assets/fonts/SAIGON1985.ttf");
+}
+
 body {
 	background: #F9F9F9 !important;
 	font-family: "SVN Poppins", sans-serif;
@@ -35,7 +40,9 @@ body {
 	font-size: 13px;
 	// line-height: 22px;
 	height: 100%;
-
+	.text-script {
+		font-family: "SaiGon1985";
+	}
 	a {
 		text-decoration: none;
 	}
@@ -66,6 +73,10 @@ body {
 
 	b {
 		font-weight: 600;
+	}
+
+	.text-body {
+		color: $text-body-color;
 	}
 
 	.btn-primary {
@@ -187,8 +198,24 @@ body {
 			height: 1px;
 			flex: 1;
 			content: '';
-		}
-		
+		}		
+	}
+	.pb-200 {
+		padding-bottom: 200px;
+	}
+
+	.bg-gradient-main-color {
+		background: linear-gradient(0deg, $main-color 0%, $main-color-gradient 100%);
+	}
+
+	.bg-gradient-black {
+		background: linear-gradient(0deg, #222222 0%, #56555A 100%);
+	}
+
+	.absolute-center-vertical {
+		top: 50%;    
+    	transform: translate(0%, -50%);
+    	left: 0;
 	}
 
 	.icon-custom {

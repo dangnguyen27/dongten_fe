@@ -1,3 +1,5 @@
+@import 'src/assets/scss/variables/variables';
+
 .footer-content {
     .logo {
         height: auto;
@@ -15,5 +17,41 @@
         padding: 50px 0;
         right: 0;
         bottom: 0;
+    }
+    .newsletter {
+        input {
+            font-size: 0.8rem;
+            background: $main-color;
+            &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+                color:   #fff;
+            }
+            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+               color:    #fff;
+               opacity:  1;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+               color:    #fff;
+               opacity:  1;
+            }
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+               color:    #fff;
+            }
+            &::-ms-input-placeholder { /* Microsoft Edge */
+               color:    #fff;
+            }
+            
+            &::placeholder { /* Most modern browsers support this now. */
+               color:    #fff;
+            }
+        }
+        button {
+            border-radius: 0;
+            border-top-right-radius: 5px;
+		    border-bottom-right-radius: 5px;
+            border: 1px solid #fff;
+            background: #fff;
+            color: $main-color;
+        }
+        
     }
 }
