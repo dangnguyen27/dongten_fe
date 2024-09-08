@@ -128,7 +128,7 @@
       </ul>
   </div>
   <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="#"><img src="/assets/images/logo.svg" alt=""></a>
+      <a href="/" class="navbar-brand mx-auto" href="#"><img src="/assets/images/logo.svg" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span class="navbar-toggler-icon"></span>
       </button>
@@ -139,16 +139,57 @@
           <a href="#"  class="nav-link fw-bold text-black"><span class="icon-custom align-middle icon-custom-20 icon-suytu me-2"></span><span>SUY TƯ</span></a>
         </li>
         <li class="nav-item">
-          <a href="#"  class="nav-link fw-bold text-black" ><span class="icon-custom align-middle icon-custom-20 icon-podcast me-2"></span><span>PODCAST</span></a>
+          <a href="#" routerLink= "/podcast"    class="nav-link fw-bold text-black" ><span class="icon-custom align-middle icon-custom-20 icon-podcast me-2"></span><span>PODCAST</span></a>
         </li>
         <li class="nav-item">
           <a href="#"  class="nav-link fw-bold text-black"><span class="icon-custom align-middle icon-custom-20 icon-news me-2"></span><span>TIN TỨC</span></a>
         </li>
 
         <li class="nav-item item-search">
-          <a href="#"  class="nav-link d-flex align-items-center"><span class="icon-custom icon-custom-20 align-middle icon-search"></span></a>
+          <a href="#" (click)="onOpenSearch()"  class="nav-link d-flex align-items-center"><span class="icon-custom icon-custom-20 align-middle icon-search"></span></a>
         </li>
       </ul>
   </div>
 </div>
 </nav>
+
+<ng-template #modalSearch let-modal>
+  <div class="modal-header">
+    <!-- <h5 class="modal-title" id="myModalLabel160">Chi tiết</h5> -->
+    <button
+      type="button"
+      class="close"
+      (click)="modalClose()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0">
+    <div class="form-group has-search">
+      <span class="icon-custom icon-custom-20 icon-search form-control-feedback"></span>
+      <input type="text" class="form-control" placeholder="Nhập thông tin tìm kiếm">
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 mb-3">
+        <h3 class="text-horizontal-line text-main-color"><span>Đáng chú ý</span></h3>
+      </div>
+      <div class="col-6 mb-4 item-news-search" *ngFor="let item of listNews; index as i">
+        <div class="d-flex align-items-end">
+          <span class="text-super-large text-light-grey fw-bold index">
+            {{ i+1 }}
+          </span>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="{{ item.image }}" alt="" class="rounded w-100 h-100">
+            </div>
+            <div class="col-md-8">
+              <h2 class="fw-bold">{{ item.title }}</h2>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

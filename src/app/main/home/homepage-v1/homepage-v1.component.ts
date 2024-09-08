@@ -116,7 +116,43 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
       image:'https://bantinconggiao.com/uploads/news/2022/6/28/gpbac-ninh-ban-loan-bao-tin-mung-giao-phan-cung-nhau-ban-bac-cho-mot-khoi-dau-moi.jpeg'
     }
 ]
+  dataLienKet = [
+    {
+      image: '/assets/images/lienket/1.png'
+    },
+    {
+      image: '/assets/images/lienket/2.png'
+    },
+    {
+      image: '/assets/images/lienket/3.png'
+    },
+    {
+      image: '/assets/images/lienket/4.png'
+    },
+    {
+      image: '/assets/images/lienket/5.png'
+    },
+    {
+      image: '/assets/images/lienket/6.png'
+    },
+    {
+      image: '/assets/images/lienket/7.png'
+    },
+    {
+      image: '/assets/images/lienket/8.png'
+    },
+    {
+      image: '/assets/images/lienket/9.png'
+    },
+    {
+      image: '/assets/images/lienket/10.png'
+    },
+    {
+      image: '/assets/images/lienket/11.png'
+    }
+  ]
 
+  dataLienKetOrder: any[] = [];
 
   slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false};
 
@@ -124,7 +160,29 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
     // let script = this._renderer2.createElement('script');
     //     // script.type = `application/ld+json`;        
 
-    //     this._renderer2.appendChild(this._document.body, script);    
+    //     this._renderer2.appendChild(this._document.body, script);
+    let indexOrder = 0;    
+    for(let i =1; i<=this.dataLienKet.length; i++) {
+      if(i <= 6*(indexOrder+1) ) {
+        if(!this.dataLienKetOrder[indexOrder]) {
+          this.dataLienKetOrder[indexOrder] = {
+            items: [
+              this.dataLienKet[i-1]
+            ]
+          }
+        } else {
+          this.dataLienKetOrder[indexOrder].items.push(this.dataLienKet[i-1])
+        }        
+      } else {
+        indexOrder++;
+        this.dataLienKetOrder[indexOrder] = {
+          items: [
+            this.dataLienKet[i-1]
+          ]
+        }
+      }      
+    }
+    console.log(this.dataLienKetOrder);
   }
 
   ngAfterViewInit(): void {

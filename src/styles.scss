@@ -145,6 +145,51 @@ body {
 			}
 		}
 	}
+	.has-search {
+		position: relative;
+		input.form-control {
+			height: 60px;
+			padding-left: 50px;
+			background: $light-grey-color;
+    		border: $light-grey-color;
+		}
+		.form-control-feedback {
+			position: absolute;
+			z-index: 2;
+			display: block;
+			width: 1.8rem;
+			height: 1.8rem;
+			line-height: 1.8rem;
+			text-align: center;
+			pointer-events: none;
+			color: #aaa;
+			top: 50%;
+			-webkit-transform: translate(0%, -50%);
+			transform: translate(0%, -50%);
+			left: 15px
+		}
+	}
+	.text-super-large {
+		font-size: 95px;
+	}
+	.text-light-grey {
+		color: $light-grey-color;
+	}
+	.text-horizontal-line {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		span {
+			margin: 0 20px;
+		}
+		&:before,&:after {
+			background: $light-grey-color;
+			height: 1px;
+			flex: 1;
+			content: '';
+		}
+		
+	}
 
 	.icon-custom {
 		display: inline;

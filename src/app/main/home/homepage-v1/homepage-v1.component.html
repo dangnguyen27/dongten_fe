@@ -1,6 +1,7 @@
-<div class="container position-relative zindex_1" >
+
+<div class="container " >
     <div class="row top_news mt-5">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">Đáng chú ý</h2>
                 <img src="/assets/images/icons/hot_news.svg" alt="" class="ms-2">
@@ -16,17 +17,17 @@
                 </ng-template>
             </ngb-carousel>
         </div>
-        <div class="col-9 newest">
+        <div class="col-12 col-md-9 newest">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">Tin mới</h2>
                 <img src="/assets/images/icons/news.svg" alt="" class="ms-2">
             </div>
             <div class="row">
-                <div class="col-4" *ngFor="let item of newest.slice(0,3)">
-                    <div class="card p-2 border-0" >
+                <div class="col-6 col-md-4" *ngFor="let item of newest.slice(0,3)">
+                    <div class="card p-3 border-0" >
                         <img src="{{ item.image }}" class="card-img-top rounded" alt="...">
                         <span class="badge rounded-pill text-bg-warning me-2">Tong do cau nguyen</span>
-                        <div class="card-body">
+                        <div class="pt-3 pb-3">
                           <h5 class="card-title fw-bold">{{ item.title }}</h5>
                           <p class="card-text">{{ item.description }}</p>
                         </div>
@@ -60,7 +61,7 @@
         </div>
     </div>
     <div class="row pray_podcast mt-5">
-        <div class="col-5">
+        <div class="col-12 col-md-5">
             <div class="d-flex align-items-center">
                 <img src="/assets/images/icons/mangluoicaunguyen.svg" alt="" class="h-100">
                 <div class="ms-2">
@@ -83,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-7 podcast">
+        <div class="col-12 col-md-7 podcast">
             <div class="hight-light">
                 <div class="header d-flex align-items-end">
                     <div class="rounded image-left">
@@ -356,6 +357,15 @@
     <div class="row mt-5 lienket">
         <div class="col-12">
             <img src="/assets/images/phut-cau-nguyen.png" alt="" class="rounded w-100">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex align-items-start" *ngFor="let childList of dataLienKetOrder">
+                <div class="flex-fill " *ngFor="let item of childList.items">
+                    <img class="" src="{{ item.image }}" alt="" >
+                </div>
+            </div>
         </div>
     </div>
 </div>

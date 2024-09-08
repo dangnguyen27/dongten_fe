@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ContentComponent } from './content/content.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -13,7 +15,9 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    NgbModule
   ],
   exports: [
     FooterComponent,
