@@ -148,10 +148,13 @@ body {
 
 	.icon-custom {
 		display: inline;
-		display: inline-block;
+		display: inline-block;		
+		background-size: contain;
+    	background-repeat: no-repeat;
+	}
+	.icon-custom-20 {
 		width: 20px;
 		height: 20px;
-		background-size: cover;
 	}
 	.icon-dongten {
 		background-image: url("/assets/images/icons/dongten.svg");
@@ -174,5 +177,96 @@ body {
 	.icon-search {
 		background-image: url("/assets/images/icons/search.svg");
 	}
+	.icon-covoongoi {
+		background-image: url("/assets/images/icons/ic_covoongoi.svg");
+	}
+	.icon-tongdogiaoxu {
+		background-image: url("/assets/images/icons/ic_tongdogiaoxu.svg");
+	}
+	.icon-nhalinhthao {
+		background-image: url("/assets/images/icons/ic_nhalinhthao.svg");
+	}
+	.icon-linhhuongchungvien {
+		background-image: url("/assets/images/icons/ic_linhhuongchungvien.svg");
+	}
+	.icon-tongdosinhvien {
+		background-image: url("/assets/images/icons/ic_tongdosinhvien.svg");
+	}
+	.icon-chamsocgiadinhtre {
+		background-image: url("/assets/images/icons/ic_chamsocgiadinhtre.svg");
+	}
+	.icon-trungtamlinhdao {
+		background-image: url("/assets/images/icons/ic_trungtamlinhdao.svg");
+	}
+	.icon-loanbaotinmung {
+		background-image: url("/assets/images/icons/ic_loanbaotinmung.svg");
+	}
+	.icon-gioitrethanhthe {
+		background-image: url("/assets/images/icons/ic_gioitrethanhthe.svg");
+	}
+	.icon-home {
+		background-image: url("/assets/images/icons/ic_home.svg");
+	}
+	.icon-xahoi {
+		background-image: url("/assets/images/icons/ic_xahoi.svg");
+	}
+	.icon-truyenthong {
+		background-image: url("/assets/images/icons/ic_truyenthong.svg");
+	}
+	.icon-vanphong {
+		background-image: url("/assets/images/icons/ic_vanphong.svg");
+	}
+	.icon-giaoduc {
+		background-image: url("/assets/images/icons/ic_giaoduc.svg");
+	}
+
+	.zindex-50 {
+		z-index: 50;
+	}
+	.zindex_1 {
+		z-index: -1;
+	}
+
+	.overlay.active {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 55px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0,0.5);
+		z-index: -1;
+		cursor: pointer;
+	}
 
 }
+
+@media all and (min-width: 992px) {
+	.navbar {
+		.has-megamenu {
+			position:static!important;
+		}
+		.megamenu{
+			left:0; right:0; width:100%; margin-top:0; 
+			border: none;
+			background: transparent;
+			.container {
+				background: #fff;
+				border-radius: 5px;
+				z-index: 90;
+				position: relative;
+				margin-top: 20px;
+				&.suvu {
+					.position-absolute {
+						border-bottom-left-radius: 5px;
+						border-bottom-right-radius: 5px;
+						bottom: 0;
+						background: linear-gradient(to bottom, rgba(179, 171, 171, 0) 0%, rgba(48, 48, 48, 0.71) 49%, rgba(19, 19, 19, 0.8) 100%);
+					}
+				}
+			} 
+		}
+	}
+  
+  }	

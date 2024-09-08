@@ -1,16 +1,16 @@
-import { Component, Renderer2, OnInit, Inject  } from '@angular/core';
+import { Component, Renderer2, OnInit, Inject, AfterViewInit  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-homepage-v1',
   templateUrl: './homepage-v1.component.html',
   styleUrls: ['./homepage-v1.component.scss']
 })
-export class HomepageV1Component implements OnInit {
+export class HomepageV1Component implements OnInit, AfterViewInit {
 
   constructor(
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document
-  ) { }
+  ) { }  
   public hotNews = [
     {
       title: "25 dieu nguoi ta khong hieu ban lam gi",
@@ -124,7 +124,10 @@ export class HomepageV1Component implements OnInit {
     // let script = this._renderer2.createElement('script');
     //     // script.type = `application/ld+json`;        
 
-    //     this._renderer2.appendChild(this._document.body, script);
+    //     this._renderer2.appendChild(this._document.body, script);    
+  }
+
+  ngAfterViewInit(): void {
     this.addJsToElement("/assets/js/gsap.min.js");
     this.addJsToElement("/assets/js/animate-slide.js");
   }
