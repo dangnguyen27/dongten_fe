@@ -1,1 +1,25 @@
-<p>forum works!</p>
+<div class="container pb-200" >
+    <div class="text-center">
+        <div class="">
+            <h1 class="text-script" style="font-size: 50px;">Diễn đàn Dòng Tên</h1>
+        </div>
+        <div class="">
+            <a href="" class="btn bg-gradient-main-color"><span class="text-white">Tạo bài đăng mới</span></a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4 mb-2" *ngFor="let item of listCategory">
+            <div class="position-relative ">
+                <img src="{{ item.image }}" alt="" class="rounded w-100">
+                <div class="position-absolute w-100 ps-2 absolute-bottom-left bg-transparent-black">
+                    <div class="p-3">
+                    <h3 class="text-white mb-0">{{ item.title }}</h3>
+                    <div>
+                        <span class="text-white">{{ item.count_post }} Bài đăng | </span><span class="text-white">{{ item.count_comment }} Trả lời</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

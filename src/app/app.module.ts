@@ -19,6 +19,10 @@ const appRoutes: Routes = [
     path: 'podcast',
     loadChildren: () => import('./main/podcast/podcast.module').then(m => m.PodcastModule)
   },
+  {
+    path: 'forum',
+    loadChildren: () => import('./main/forum/forum.module').then(m => m.ForumModule)
+  },
 ]
 
 @NgModule({
