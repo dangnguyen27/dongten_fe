@@ -1,0 +1,33 @@
+<div class="card bg-white p-3 rounded border-0">
+    <div class="w-100">
+        <div class="float-start d-flex align-items-center">
+            <img src="{{ item.user.image }}" alt="" class="rounded-circle me-2">
+            <span>{{ item.user.name }}</span>
+        </div>
+        <div class="float-end">
+
+        </div>
+    </div>
+    <div class="w-100 overflow-hidden pt-3">
+        <h2 class="fw-bold">{{ item.title }}</h2>
+        <p class="text-body">{{ item.description }}</p>
+    </div>
+    <div class="border-top">
+
+    </div>
+    <div class="d-flex py-3">
+        <div class="me-4">
+            <span></span>
+            <span>{{ item.created_at }}</span>
+        </div>
+        <div class="me-4">
+            <span>{{ item.count_views }}</span>
+        </div>
+        <div>
+            <span>{{ item.count_comments }}</span>            
+        </div>
+    </div>
+    <div *ngIf="item.image">
+        <img src="{{ item.image }}" alt="" class="rounded w-100">
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { ForumCategoryComponent } from './forum-category/forum-category.componen
 import { ForumPostDetailComponent } from './forum-post-detail/forum-post-detail.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ForumItemComponent } from './forum-item/forum-item.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
   declarations: [
     ForumComponent,
     ForumCategoryComponent,
-    ForumPostDetailComponent
+    ForumPostDetailComponent,
+    ForumItemComponent
   ],
   imports: [    
     CommonModule,        

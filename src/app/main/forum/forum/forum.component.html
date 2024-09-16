@@ -1,4 +1,4 @@
-<div class="container pb-200" >
+<div class="container pb-200 pt-100" >
     <div class="text-center">
         <div class="">
             <h1 class="text-script" style="font-size: 50px;">Diễn đàn Dòng Tên</h1>
@@ -20,6 +20,18 @@
                 </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="fw-bold">
+                Bài đăng mới nhất:
+            </h2>
+        </div>
+    </div>
+    <div class="row mt-2"  data-masonry='{"percentPosition": true }'>
+        <div class="col-md-3 mb-4" *ngFor="let item of newest" >
+            <app-forum-item [item]="item" ></app-forum-item>
         </div>
     </div>
 </div>
