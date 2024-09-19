@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   hmr: false,
   // apiUrl: 'https://sandbox-api.g99.vn/api',  
-  apiUrl: 'http://localhost:3000/api',  
+  apiUrl: 'http://localhost:8000/api',  
   
   FCM_VAPID_PUBLIC_KEY: 'BD1zjiNqZGojPvrF2BBbUNe_zv_tq9q4ftHSlCJlxTugdNZpMbV7r_e6YjKIpToTWt_PVoJQwFisoEk-HI2ASEo',
   firebaseConfig: {

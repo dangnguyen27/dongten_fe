@@ -1,5 +1,7 @@
 import { Component, Renderer2, OnInit, Inject, AfterViewInit  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { CmsService } from 'src/app/services/cms.service';
+import { GroupCode } from 'src/app/utils/constants';
 @Component({
   selector: 'app-homepage-v1',
   templateUrl: './homepage-v1.component.html',
@@ -9,7 +11,8 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
 
   constructor(
     private _renderer2: Renderer2, 
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+    private readonly cmsService: CmsService
   ) { }  
   public hotNews = [
     {
@@ -156,6 +159,8 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
 
   slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false};
 
+  public homeData: any = {};
+
   ngOnInit(): void {
     // let script = this._renderer2.createElement('script');
     //     // script.type = `application/ld+json`;        
@@ -183,6 +188,18 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
       }      
     }
     console.log(this.dataLienKetOrder);
+    this.getData();
+  }
+
+  getData() {
+    for (let code in GroupCode) {
+      if (isNaN(Number(code))) {
+        this.cmsService.getItemsByGroup({code: code}).subscribe(res => {
+          this.homeData[code] = res.data.items;
+        })
+      }
+    }
+    console.log(this.homeData);
   }
 
   ngAfterViewInit(): void {
