@@ -1,7 +1,8 @@
 import { Component, Renderer2, OnInit, Inject, AfterViewInit  } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CmsService } from 'src/app/services/cms.service';
-import { GroupCode } from 'src/app/utils/constants';
+import { GroupCode, ItemType } from 'src/app/utils/constants';
+import { combineLatest, forkJoin, from, merge, mergeMap } from 'rxjs';
 @Component({
   selector: 'app-homepage-v1',
   templateUrl: './homepage-v1.component.html',
@@ -160,6 +161,7 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false};
 
   public homeData: any = {};
+  groupCode = GroupCode;
 
   ngOnInit(): void {
     // let script = this._renderer2.createElement('script');
@@ -194,11 +196,24 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   getData() {
     for (let code in GroupCode) {
       if (isNaN(Number(code))) {
-        this.cmsService.getItemsByGroup({code: code}).subscribe(res => {
-          this.homeData[code] = res.data.items;
+      // promises.push(this.cmsService.getItemsByGroup({code: code}))
+        // callApi[code] = this.cmsService.getItemsByGroup({code: code})
+        let params = {code: code, page_size: 5, item_type: ItemType.post}
+        if (code == GroupCode.TOP_HOME_NEWEST) {
+          params.page_size = 9
+        } else if (code == GroupCode.HOME_PRAYER) {
+          params.page_size = 1
+        } else if (code == GroupCode.HOME_SUYTU_POST || code == GroupCode.HOME_LINHDAO_POST) {
+          params.page_size = 6
+        } else if (code == GroupCode.HOME_NEWS) {
+          params.page_size = 8
+        }
+        this.cmsService.getItemsByGroup(params).subscribe(res => {
+          this.homeData[code] = res.data;
         })
       }
     }
+    
     console.log(this.homeData);
   }
 

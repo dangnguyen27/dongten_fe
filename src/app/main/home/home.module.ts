@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlockUIModule } from 'ng-block-ui';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { StripHtmlTagPipe } from 'src/app/pipes/stripHtmlTag.pipe';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomepageV1Component
+    HomepageV1Component,
+    StripHtmlTagPipe
   ],
   
   imports: [

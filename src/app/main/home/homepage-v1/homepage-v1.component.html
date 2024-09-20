@@ -25,15 +25,15 @@
         </div>
     </div>
     <div class="row top_news mt-5">
-        <div class="col-12 col-md-3 pe-md-5">
+        <div class="col-12 col-md-3 pe-md-5" *ngIf="homeData[groupCode.TOP_HOME_NOIBAT]">
             <div class="mb-4 d-flex align-items-end section-title">
-                <h2 class="p-0 m-0 main-title fw-bold">Đáng chú ý</h2>
+                <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.TOP_HOME_NOIBAT].group.title }}</h2>
                 <img src="/assets/images/icons/hot_news.svg" alt="" class="ms-2">
             </div>
             <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let item of hotNews">
+                <ng-template ngbSlide *ngFor="let item of homeData[groupCode.TOP_HOME_NOIBAT].items">
                     <img src="{{ item.image }}" alt="" class="rounded img-fluid">
-                    <h2 class="fw-bold">{{ item.title }}</h2>
+                    <h2 class="fw-bold mt-2">{{ item.title }}</h2>
                     <p class="text-body">{{ item.description }}</p>
                     <div>
                         
@@ -41,16 +41,18 @@
                 </ng-template>
             </ngb-carousel>
         </div>
-        <div class="col-12 col-md-9 newest">
+        <div class="col-12 col-md-9 newest " *ngIf="homeData[groupCode.TOP_HOME_NEWEST] && homeData[groupCode.TOP_HOME_NEWEST].items">
             <div class="mb-4 d-flex align-items-end section-title">
-                <h2 class="p-0 m-0 main-title fw-bold">Tin mới</h2>
+                <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.TOP_HOME_NEWEST].group.title }}</h2>
                 <img src="/assets/images/icons/news.svg" alt="" class="ms-2">
             </div>
             <div class="row">
-                <div class="col-6 col-md-4" *ngFor="let item of newest.slice(0,3)">
+                <div class="col-6 col-md-4" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(0,3)">
                     <div class="card p-3 border-0" >
                         <img src="{{ item.image }}" class="card-img-top rounded" alt="...">
-                        <span class="badge rounded-pill text-bg-warning me-2">Tong do cau nguyen</span>
+                        <span *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy" class="badge rounded-pill text-bg-warning me-2">
+                            {{ item.item_taxonomies[0].taxonomy.title }}
+                        </span>
                         <div class="pt-3 pb-3">
                           <h5 class="card-title fw-bold">{{ item.title }}</h5>
                           <p class="card-text text-body">{{ item.description }}</p>
@@ -64,13 +66,13 @@
             </div>
             <div class="row mt-5 custom-scrollbar" style="height: 300px;">
                 <div class="col-12">
-                    <div class="row" *ngFor="let item of newest">
+                    <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items">
                         <div class="col-2">
                             <img src="{{ item.image }}" alt="" class="rounded img-fluid">
                         </div>
                         <div class="col-10">
-                            <div class="mb-1">
-                                <span class="text-main-color">Than hoc</span>
+                            <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                                <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
                                 <h3 class="fw-bold">{{ item.title }}</h3>
