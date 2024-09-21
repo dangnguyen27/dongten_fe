@@ -25,4 +25,8 @@ export class CmsService {
   getNewestPodcast() {
     return this._http.get<any>(`${environment.apiUrl}/podcast/newest`);
   }
+
+  getSingplePodcastEpisode(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/podcast/single-episode`, {params: params});
+  }
 }

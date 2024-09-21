@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CmsService } from 'src/app/services/cms.service';
 
 @Component({
   selector: 'app-podcast-detail-category',
   templateUrl: './podcast-detail-category.component.html',
   styleUrls: ['./podcast-detail-category.component.scss']
 })
-export class PodcastDetailCategoryComponent {
+export class PodcastDetailCategoryComponent implements OnInit {
+  
   public category = {
     name: "365 ngày với Lời",
     icon: [
@@ -80,4 +83,19 @@ export class PodcastDetailCategoryComponent {
       ]
     }
   ];
+  slug: string = '';
+  detailItem: any;
+  constructor(
+    private readonly cmsService: CmsService,
+    private readonly activedRoute: ActivatedRoute
+  ) {
+    this.activedRoute.snapshot.paramMap.get('slug');
+  }
+
+  ngOnInit(): void {
+  }
+
+  getData() {
+
+  }
 }

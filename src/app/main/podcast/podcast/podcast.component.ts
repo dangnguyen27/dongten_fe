@@ -7,7 +7,7 @@ import { CmsService } from 'src/app/services/cms.service';
   styleUrls: ['./podcast.component.scss']
 })
 export class PodcastComponent implements OnInit {
-  
+
   public newest = [
     {
       id: '1',
