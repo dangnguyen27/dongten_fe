@@ -64,9 +64,9 @@
                       </div>
                 </div>
             </div>
-            <div class="row mt-5 custom-scrollbar" style="height: 300px;">
+            <div class="row mt-5 custom-scrollbar" style="height: 300px;" *ngIf="homeData[groupCode.TOP_HOME_NEWEST].items.length > 3">
                 <div class="col-12">
-                    <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items">
+                    <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(3, homeData[groupCode.TOP_HOME_NEWEST].items.length)">
                         <div class="col-2">
                             <img src="{{ item.image }}" alt="" class="rounded img-fluid">
                         </div>
@@ -263,25 +263,29 @@
     </div>
 <div class="container mt-5" style="padding-bottom: 150px;">
     <div class="row linhdao g-5">
-        <div class="col-6">
+        <div class="col-6" *ngIf="homeData[groupCode.HOME_LINHDAO_POST] && homeData[groupCode.HOME_LINHDAO_POST].items">
             <div class="mb-4 d-flex align-items-end section-title">
-                <h2 class="p-0 m-0 main-title fw-bold">Linh đạo </h2>
+                <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.HOME_LINHDAO_POST].group.title }} </h2>
                 <img src="/assets/images/icons/linhdao.svg" alt="" class="ms-2">
             </div>
-                <div class="first-news rounded position-relative mb-2" >
-                    <img src="{{ newest[0].image }}" alt="" class="w-100 rounded">
+                <div class="first-news rounded position-relative mb-2" *ngIf="homeData[groupCode.HOME_LINHDAO_POST].items[0]" >
+                    <img src="{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold">{{ newest[0].title }}</h2>
+                            <h2 class="text-white fw-bold">{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].title }}</h2>
                         </div>
                         <div>
-                            <span class="badge rounded-pill text-bg-warning me-2">Tong do cau nguyen</span>
+                            <span class="badge rounded-pill text-bg-warning me-2"
+                            *ngIf="homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies && homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies[0]
+                             && homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies[0].taxonomy">
+                            {{ homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies[0].taxonomy.title }} 
+                            </span>
                             <span class="text-white"><i class="far fa-clock"></i> 2 gio truoc</span>
                         </div>
                     </div>
                 </div>
                 <div class="rounded bg-white p-2" >
-                    <div *ngFor="let item of newest; index as i">                        
+                    <div *ngFor="let item of homeData[groupCode.HOME_LINHDAO_POST].items; index as i">                        
                             <div class="row mb-2" *ngIf="i > 0">
                                 <div class="col-3">
                                     <div class="ratio ratio-1x1">
@@ -289,8 +293,8 @@
                                     </div>
                                 </div>
                                 <div class="col-9">
-                                    <div class="mb-1">
-                                        <small class="text-main-color">Phut hoi tam</small>
+                                    <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                                        <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
                                     </div>
                                     <h2 class="fw-bold">{{ item.title }}</h2>
                                     <p class="text-body">{{ item.description }}</p>
@@ -302,25 +306,29 @@
             
         </div>
 
-        <div class="col-6">
+        <div class="col-6" *ngIf="homeData[groupCode.HOME_SUYTU_POST] && homeData[groupCode.HOME_SUYTU_POST].items">
             <div class="mb-4 d-flex align-items-end section-title">
-                <h2 class="p-0 m-0 main-title fw-bold">Suy tư </h2>
+                <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.HOME_SUYTU_POST].group.title }} </h2>
                 <img src="/assets/images/icons/suytu.svg" alt="" class="ms-2">
             </div>
-                <div class="first-news rounded position-relative mb-2" >
-                    <img src="{{ newest[0].image }}" alt="" class="w-100 rounded">
+                <div class="first-news rounded position-relative mb-2" *ngIf="homeData[groupCode.HOME_SUYTU_POST].items[0]">
+                    <img src="{{ homeData[groupCode.HOME_SUYTU_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold">{{ newest[0].title }}</h2>
+                            <h2 class="text-white fw-bold">{{ homeData[groupCode.HOME_SUYTU_POST].items[0].title }}</h2>
                         </div>
                         <div>
-                            <span class="badge rounded-pill text-bg-warning me-2">Tong do cau nguyen</span>
+                            <span class="badge rounded-pill text-bg-warning me-2"
+                            *ngIf="homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies && homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies[0]
+                             && homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies[0].taxonomy">
+                            {{ homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies[0].taxonomy.title }} 
+                            </span>
                             <span class="text-white"><i class="far fa-clock"></i> 2 gio truoc</span>
                         </div>
                     </div>
                 </div>
                 <div class="rounded bg-white p-2" >
-                    <div *ngFor="let item of newest; index as i">                        
+                    <div *ngFor="let item of homeData[groupCode.HOME_SUYTU_POST].items; index as i">                        
                             <div class="row mb-2" *ngIf="i > 0">
                                 <div class="col-3">
                                     <div class="ratio ratio-1x1">
@@ -328,9 +336,9 @@
                                     </div>
                                 </div>
                                 <div class="col-9">
-                                    <div class="mb-1">
-                                        <small class="text-main-color">Phut hoi tam</small>
-                                    </div>                                    
+                                    <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                                        <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
+                                    </div>                                   
                                     <h2 class="fw-bold">{{ item.title }}</h2>
                                     <p class="text-body">{{ item.description }}</p>
                                 </div>
@@ -340,20 +348,20 @@
         </div>
     </div>
 
-    <div class="row mt-5 tintuc">
+    <div class="row mt-5 tintuc" *ngIf="homeData[groupCode.HOME_NEWS] && homeData[groupCode.HOME_NEWS].items">
         <div class="col-12">
             <div class="mb-4 d-flex align-items-end section-title">
-                <h2 class="p-0 m-0 main-title fw-bold">Tin tức </h2>
+                <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.HOME_NEWS].group.title }} </h2>
                 <img src="/assets/images/icons/news.svg" alt="" class="ms-2">
             </div>
         </div>
         <div class="col-6">
             
-            <div class="row">
+            <div class="row" *ngIf="homeData[groupCode.HOME_NEWS].items[0]">
                 <div class="col-12">
-                    <img src="{{ newest[0].image }}" alt="" class="rounded w-100 mb-2">
-                    <h2 class="fw-bold">{{ newest[0].title }}</h2>
-                    <p class="text-body">{{ newest[0].description }}</p>
+                    <img src="{{ homeData[groupCode.HOME_NEWS].items[0].image }}" alt="" class="rounded w-100 mb-2">
+                    <h2 class="fw-bold">{{ homeData[groupCode.HOME_NEWS].items[0].title }}</h2>
+                    <p class="text-body">{{ homeData[groupCode.HOME_NEWS].items[0].description }}</p>
                     <div class="pt-2 pb-2 border-top">
                         <span class="float-start text-muted">1 ngay truoc</span>
                         <a href="#" class="float-end text-muted"><img src="/assets/images/icons/share.svg" alt=""></a>
@@ -365,13 +373,13 @@
         <div class="col-6">
             <div class="row mt-3 custom-scrollbar" style="height: 380px;">
                 <div class="col-12">
-                    <div class="row" *ngFor="let item of newest">
+                    <div class="row" *ngFor="let item of homeData[groupCode.HOME_NEWS].items">
                         <div class="col-2">
                             <img src="{{ item.image }}" alt="" class="rounded img-fluid">
                         </div>
                         <div class="col-10">
-                            <div class="mb-1">
-                                <span class="text-main-color">Than hoc</span>
+                            <div class="mb-1"  *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                                <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
                                 <h3 class="fw-bold">{{ item.title }}</h3>
