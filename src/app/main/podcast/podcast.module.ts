@@ -7,6 +7,7 @@ import { PodcastDetailComponent } from './podcast-detail/podcast-detail.componen
 import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HomepageV1Component } from '../home/homepage-v1/homepage-v1.component';
+import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
     PodcastComponent,
     PodcastListCategoryComponent,
     PodcastDetailCategoryComponent,
-    PodcastDetailComponent
+    PodcastDetailComponent,
+    ConvertSecondDurationPipe
   ],
   
   imports: [

@@ -22,4 +22,7 @@ export class CmsService {
     return this._http.get<any>(`${environment.apiUrl}/item?slug=${slug}`);
   }
 
+  getNewestPodcast() {
+    return this._http.get<any>(`${environment.apiUrl}/podcast/newest`);
+  }
 }
