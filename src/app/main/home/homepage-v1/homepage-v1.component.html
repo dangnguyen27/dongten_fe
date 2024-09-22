@@ -126,10 +126,10 @@
                 <div class="list">
                     <div class="list-header ps-3 pe-3 pt-4 pb-4 overflow-hidden">
                         <span class=" text-secondary float-start">Mới nhất</span>
-                        <a href="" class="float-end text-secondary">Xem tất cả</a>
+                        <a href="#" routerLink="/podcast" class="float-end text-secondary">Xem tất cả</a>
                     </div>
                     <div class="list-items ps-3 pe-3 custom-scrollbar" style="height: 300px;">
-                        <div class="row" *ngFor="let item of newest">
+                        <div class="row" *ngFor="let item of newestPodcast">
                             <div class="col-2">
                                 <div class="ratio ratio-1x1">
                                 <img src="{{ item.image }}" alt="" class="img-fluid rounded">
@@ -140,9 +140,9 @@
                                 <p class="text-secondary">{{ item.description }}</p>
                                 <div class="d-flex align-items-start">
                                     <a href="" class="play-action"><img src="/assets/images/icons/play.svg" alt=""></a>
-                                    <span class="text-secondary ms-4 me-2"><small>05/09/2024</small></span>
+                                    <span class="text-secondary ms-4 me-2"><small>{{ item.release_date }}</small></span>
                                     <span class="ms-2 me-2 text-secondary">•</span>
-                                    <span class="text-secondary"><small>1 phút 20 giây</small></span>
+                                    <span class="text-secondary"><small>{{ item.duration | convertSecondDuration }}</small></span>
                                 </div>
                             </div>
                             <div class="my-3 mx-3 border-top"></div>

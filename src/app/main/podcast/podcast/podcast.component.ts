@@ -98,6 +98,9 @@ export class PodcastComponent implements OnInit {
 
   ];
 
+  selectedIdEpisode: any;
+  isShowPlayer: boolean = false;
+
   constructor(
     private readonly cmsService: CmsService
   ) {
@@ -112,6 +115,16 @@ export class PodcastComponent implements OnInit {
     this.cmsService.getNewestPodcast().subscribe(res => {
       this.newest = res.data.items;
     })
+  }
+
+  onShowPlayer(id: any) {
+    console.log("x");
+    this.selectedIdEpisode = id;
+    this.isShowPlayer = true;
+  }
+
+  closePlayer() {
+    this.isShowPlayer = false;
   }
 
 }

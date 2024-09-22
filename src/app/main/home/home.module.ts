@@ -6,6 +6,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { StripHtmlTagPipe } from 'src/app/pipes/stripHtmlTag.pipe';
+import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HomepageV1Component,
-    StripHtmlTagPipe
+    StripHtmlTagPipe,
+    ConvertSecondDurationPipe
   ],
   
   imports: [

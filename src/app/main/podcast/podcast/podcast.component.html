@@ -5,16 +5,16 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3" *ngFor="let item of newest" routerLink="/podcast/{{ item.id }}">
+        <div class="col-3" *ngFor="let item of newest" >
             <div class="podcast-newest-item">
-                <div>
+                <div routerLink="/podcast/{{ item.id }}">
                     <img src="{{ item.image }}" alt="" class="rounded w-100">
                     <small class="text-main-color mt-1">
                         {{ item.taxonomy.title }}
                     </small>
                 </div>
-                <div>
-                    <h2 class="fw-bold">{{ item.title }}</h2>
+                <div routerLink="/podcast/{{ item.id }}">
+                    <h2 class="fw-bold" >{{ item.title }}</h2>
                     <p>{{ item.description }}</p>
                 </div>
                 <div class="d-flex align-items-center item-footer">
@@ -24,7 +24,7 @@
                         <span class="text-secondary"><small>{{ item.duration | convertSecondDuration }}</small></span>
                     </div>
                     <div class="right">
-                        <a href="" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
+                        <a [routerLink]="[]" (click)="onShowPlayer(item.id)" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -49,4 +49,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="bottom_pleyer w-100" *ngIf="isShowPlayer" style="position: fixed; bottom: 0;">
+    <button class="btn btn-secondary" (click)="closePlayer()" style="position: absolute; right: 0;">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1L1 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L16 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+    </button>
+    <app-player-audio [id]="selectedIdEpisode"></app-player-audio>
 </div>

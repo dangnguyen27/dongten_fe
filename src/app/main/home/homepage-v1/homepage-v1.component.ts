@@ -162,7 +162,7 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
 
   public homeData: any = {};
   groupCode = GroupCode;
-
+  newestPodcast: any;
   ngOnInit(): void {
     // let script = this._renderer2.createElement('script');
     //     // script.type = `application/ld+json`;        
@@ -213,6 +213,10 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
         })
       }
     }
+
+    this.cmsService.getNewestPodcast({page_size: 10}).subscribe(res => {
+      this.newestPodcast = res.data.items;
+    })
     
     console.log(this.homeData);
   }

@@ -8,6 +8,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HomepageV1Component } from '../home/homepage-v1/homepage-v1.component';
 import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
+import { PlayerAudioComponent } from './player-audio/player-audio.component';
+import { SafeUrlPipe } from 'src/app/pipes/safe-url.pipe';
 
 
 const routes: Routes = [
@@ -35,7 +37,9 @@ const routes: Routes = [
     PodcastListCategoryComponent,
     PodcastDetailCategoryComponent,
     PodcastDetailComponent,
-    ConvertSecondDurationPipe
+    ConvertSecondDurationPipe,
+    PlayerAudioComponent,
+    SafeUrlPipe
   ],
   
   imports: [
