@@ -7,7 +7,7 @@
     <div class="row category">
         <div class="col-4">
             <div class="item-category">
-                <img src="{{ category.icon[0].url }}" alt="" class="rounded w-100">
+                <img src="{{ category.image }}" alt="" class="rounded w-100">
                 
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="col-12 mt-3">
             <div class="d-flex align-items-center item-footer">
                 <div class="left">
-                    <h2 class="fw-bold mb-1">{{ category.name }}</h2>
+                    <h2 class="fw-bold mb-1">{{ category.title }}</h2>
                     <div class="d-flex align-items-center">
                         <img src="/assets/images/icons/headphone.svg" alt="">
                     </div>
@@ -47,7 +47,7 @@
             <h2 class="fw-bold">Giới thiệu</h2>
         </div>
         <div class="col-12 mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies nisi nec efficitur varius. Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in quam. Etiam euismod nisi mauris, vel bibendum libero consequat ac. Ut rhoncus in eros vitae consectetur. Etiam bibendum orci dapibus nibh tempus, nec rhoncus odio venenatis. Curabitur id sodales tellus. Vestibulum facilisis tincidunt sollicitudin. Mauris sit amet orci vel sapien convallis iaculis ac id est. In posuere iaculis leo ut pulvinar. Vestibulum ac dolor faucibus, suscipit lorem in, ultrices ante. Cras porttitor eros id tristique gravida.
+            {{ category.description }}
         </div>
     </div>
     <div class="row mt-5 items-of-category">
@@ -66,9 +66,9 @@
                     <p>{{ item.description }}</p>
                     <div class="d-flex align-items-center">
                         <a href="" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
-                        <span class="text-secondary ms-4 me-2"><small>05/09/2024</small></span>
+                        <span class="text-secondary ms-4 me-2"><small>{{ item.release_date }}</small></span>
                         <span class="ms-2 me-2 text-secondary">•</span>
-                        <span class="text-secondary"><small>1 phút 20 giây</small></span>
+                        <span class="text-secondary"><small>{{ item.duration | convertSecondDuration }}</small></span>
                     </div>
                 </div>
             </div>
@@ -97,4 +97,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="bottom_pleyer w-100" *ngIf="isShowPlayer" style="position: fixed; bottom: 0;">
+    <button class="btn btn-secondary" (click)="closePlayer()" style="position: absolute; right: 0;">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1L1 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L16 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+    </button>
+    <app-player-audio [id]="selectedIdEpisode"></app-player-audio>
 </div>

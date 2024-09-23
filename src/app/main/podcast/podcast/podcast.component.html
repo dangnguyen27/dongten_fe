@@ -49,6 +49,42 @@
             </div>
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="mb-4 d-flex align-items-end section-title">
+            <h2 class="p-0 m-0 main-title fw-bold">Tất cả podcast</h2>
+        </div>
+    </div>
+    <div class="row mt-3" *ngFor="let itemC of listDataByCategory">
+        <div class="col-md-4">
+            <img src="{{ itemC.category.image }}" alt="" class="rounded w-100">
+            <div class="mt-3">
+                <h2 class="fw-bold mb-1">{{ itemC.category.title }}</h2>
+                <div class="d-flex align-items-center">
+                    <img src="/assets/images/icons/headphone.svg" alt="">
+                </div>
+                <p>{{ itemC.category.description }}</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row mb-3" *ngFor="let itemP of itemC.episodes">
+                <div class="col-2">
+                    <div class="ratio ratio-1x1">
+                    <img src="{{ itemP.image }}" alt="" class="img-fluid rounded">
+                </div>
+                </div>
+                <div class="col-10">
+                    <h3 class="fw-bold">{{ itemP.title }}</h3>
+                    <p class="mb-1">{{ itemP.description }}</p>
+                    <div class="d-flex align-items-start">
+                        <a [routerLink]="[]" (click)="onShowPlayer(itemP.id)" class="play-action"><img width="20" src="/assets/images/icons/play_grey.svg" alt=""></a>
+                        <span class=" ms-4 me-2"><small>{{ itemP.release_date }}</small></span>
+                        <span class="ms-2 me-2 ">•</span>
+                        <span class=""><small>{{ itemP.duration | convertSecondDuration }}</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="bottom_pleyer w-100" *ngIf="isShowPlayer" style="position: fixed; bottom: 0;">

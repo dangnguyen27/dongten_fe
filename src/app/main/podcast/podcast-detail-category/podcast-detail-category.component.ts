@@ -9,46 +9,9 @@ import { CmsService } from 'src/app/services/cms.service';
 })
 export class PodcastDetailCategoryComponent implements OnInit {
   
-  public category = {
-    name: "365 ngày với Lời",
-    icon: [
-      {
-        url: "/assets/images/sample_podcast_category.png"
-      }
-    ]
-  }
+  public category: any;
 
-  public items = [
-    {
-      title: "VỪA ĐIẾC VỪA NGỌNG | MANNA CN23TNB",
-      description: "Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in",
-      duration: 815597,
-      created: "2024-09-06T01:09:31.000Z",
-      image: "/assets/images/sample_podcast.png"
-    },
-    {
-      title: "VỪA ĐIẾC VỪA NGỌNG | MANNA CN23TNB",
-      description: "Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in",
-      duration: 815597,
-      created: "2024-09-06T01:09:31.000Z",
-      image: "/assets/images/sample_podcast.png"
-    },
-    {
-      title: "VỪA ĐIẾC VỪA NGỌNG | MANNA CN23TNB",
-      description: "Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in",
-      duration: 815597,
-      created: "2024-09-06T01:09:31.000Z",
-      image: "/assets/images/sample_podcast.png"
-    },
-    {
-      title: "VỪA ĐIẾC VỪA NGỌNG | MANNA CN23TNB",
-      description: "Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in",
-      duration: 815597,
-      created: "2024-09-06T01:09:31.000Z",
-      image: "/assets/images/sample_podcast.png"
-    }
-  ];
-
+  public items: any;
   public highlightCategory = [
     {
       name: "365 ngày với Lời",
@@ -84,7 +47,9 @@ export class PodcastDetailCategoryComponent implements OnInit {
     }
   ];
   slug: string = '';
-  detailItem: any;
+  selectedIdEpisode: any;
+  isShowPlayer: boolean = false;
+
   constructor(
     private readonly cmsService: CmsService,
     private readonly activedRoute: ActivatedRoute
@@ -93,9 +58,25 @@ export class PodcastDetailCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  onShowPlayer(id: any) {
+    this.selectedIdEpisode = id;
+    this.isShowPlayer = true;
+  }
+
+  closePlayer() {
+    this.isShowPlayer = false;
   }
 
   getData() {
+    this.cmsService.getDetailTaxonomy({slug: this.slug}).subscribe(res => {
+      this.category = res.category;
+    });
 
+    this.cmsService.getListEpisodePodcast({slug: this.slug, page_size: 10}).subscribe(res => {
+      this.items = res.data.items;
+    })
   }
 }

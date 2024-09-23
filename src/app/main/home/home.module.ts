@@ -7,6 +7,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { StripHtmlTagPipe } from 'src/app/pipes/stripHtmlTag.pipe';
 import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
+import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 
 const routes: Routes = [
   {
@@ -17,9 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomepageV1Component,
-    StripHtmlTagPipe,
-    ConvertSecondDurationPipe
+    HomepageV1Component
   ],
   
   imports: [
@@ -27,7 +26,8 @@ const routes: Routes = [
     NgbCarouselModule,
     BlockUIModule.forRoot(),
     RouterModule.forChild(routes),
-    SlickCarouselModule
+    SlickCarouselModule,
+    SharePipeModule
   ],
   providers: [
   ],

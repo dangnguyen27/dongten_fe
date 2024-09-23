@@ -10,6 +10,7 @@ import { HomepageV1Component } from '../home/homepage-v1/homepage-v1.component';
 import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
 import { PlayerAudioComponent } from './player-audio/player-audio.component';
 import { SafeUrlPipe } from 'src/app/pipes/safe-url.pipe';
+import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 
 
 const routes: Routes = [
@@ -37,15 +38,14 @@ const routes: Routes = [
     PodcastListCategoryComponent,
     PodcastDetailCategoryComponent,
     PodcastDetailComponent,
-    ConvertSecondDurationPipe,
     PlayerAudioComponent,
-    SafeUrlPipe
   ],
   
   imports: [
     CommonModule,        
     RouterModule.forChild(routes),
-    SlickCarouselModule
+    SlickCarouselModule,
+    SharePipeModule
   ],
   providers: [
   ],

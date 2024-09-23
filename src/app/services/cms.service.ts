@@ -10,6 +10,14 @@ export class CmsService {
    */
   constructor(private _http: HttpClient) {}
 
+  getListTaxonomy(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/taxonomy`, {params: params});
+  }
+
+  getDetailTaxonomy(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/taxonomy/detail`, {params: params});
+  }
+
   getItemsByGroup(params: any = null) {
     return this._http.get<any>(`${environment.apiUrl}/cms-group/items`, {params: params});
   }
@@ -24,6 +32,10 @@ export class CmsService {
 
   getNewestPodcast(params: any = null) {
     return this._http.get<any>(`${environment.apiUrl}/podcast/newest`, {params: params});
+  }
+
+  getListEpisodePodcast(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/podcast/list-episode`, {params: params});
   }
 
   getSingplePodcastEpisode(params: any = null) {

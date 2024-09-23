@@ -26,3 +26,9 @@ export enum ItemType {
     forum = 'forum',
     prayer = 'prayer'
 }
+
+export enum TaxonomyType {
+    CATEGORY = 'category',
+    TAG = 'tag',
+    PODCAST = 'podcast'
+}
