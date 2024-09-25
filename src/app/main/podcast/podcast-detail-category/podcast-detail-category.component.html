@@ -4,7 +4,7 @@
     </div>    
 </div>
 <div class="container">
-    <div class="row category">
+    <div class="row category" *ngIf="category">
         <div class="col-4">
             <div class="item-category">
                 <img src="{{ category.image }}" alt="" class="rounded w-100">
@@ -54,7 +54,7 @@
         <div class="col-12 mb-3">
             <h2 class="fw-bold">Danh sách các tập</h2>
         </div>
-        <div class="col-8">
+        <div class="col-md-8 col-12" *ngIf="items && items.length > 0">
             <div class="row mb-3" *ngFor="let item of items">
                 <div class="col-2">
                     <div class="ratio ratio-1x1">
@@ -62,10 +62,10 @@
                 </div>
                 </div>
                 <div class="col-10">
-                    <h3 class="fw-bold">{{ item.title }}</h3>
+                    <h3 class="fw-bold"><a routerLink="/podcast/{{ item.id }}" class="text-body">{{ item.title }}</a></h3>
                     <p>{{ item.description }}</p>
                     <div class="d-flex align-items-center">
-                        <a href="" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
+                        <a [routerLink]="[]" (click)="onShowPlayer(item.id)" class="play-action"><img src="/assets/images/icons/play_grey.svg" alt=""></a>
                         <span class="text-secondary ms-4 me-2"><small>{{ item.release_date }}</small></span>
                         <span class="ms-2 me-2 text-secondary">•</span>
                         <span class="text-secondary"><small>{{ item.duration | convertSecondDuration }}</small></span>

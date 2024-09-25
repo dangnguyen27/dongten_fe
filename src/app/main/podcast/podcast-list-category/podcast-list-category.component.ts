@@ -1,75 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CmsService } from 'src/app/services/cms.service';
+import { TaxonomyType } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-podcast-list-category',
   templateUrl: './podcast-list-category.component.html',
   styleUrls: ['./podcast-list-category.component.scss']
 })
-export class PodcastListCategoryComponent {
-  public categories = [
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    },
-    {
-      name: "365 ngày với Lời",
-      icon: [
-        {
-          url: "/assets/images/sample_podcast_category.png"
-        }
-      ]
-    }
-  ];
+export class PodcastListCategoryComponent implements OnInit {
+  
+  public categories: any = [];
+
+  constructor(
+    private readonly cmsService: CmsService
+  ) {
+
+  }
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.cmsService.getListTaxonomy({page_size: -1, type: TaxonomyType.PODCAST}).subscribe(res => {
+      this.categories = res.data.items;
+    })
+  }
+
 }

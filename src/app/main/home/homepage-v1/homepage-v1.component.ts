@@ -159,6 +159,7 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   dataLienKetOrder: any[] = [];
 
   slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false};
+  slideConfigMainSlide = { "dots": true, "arrows": false};
 
   public homeData: any = {};
   groupCode = GroupCode;
@@ -224,6 +225,9 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.addJsToElement("/assets/js/gsap.min.js");
     this.addJsToElement("/assets/js/animate-slide.js");
+    this.addJsToElement("/assets/js/TweenMax.min.js");
+    // this.addJsToElement("/assets/js/tweenslide.js");
+    this.addJsToElement("/assets/js/top-home-animate-slideshow.js");
   }
 
   addJsToElement(src: string): HTMLScriptElement {

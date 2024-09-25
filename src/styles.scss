@@ -220,6 +220,29 @@ body {
     	transform: translate(0%, -50%);
     	left: 0;
 	}
+	.center-vertical-horiz {
+		top: 50%;    
+		left: 50%;
+    	transform: translate(-50%, -50%);
+	}
+	.text-underline-style {
+		position: relative;
+		&::before {
+			content: '';
+			background-color: #FFDA40;
+			position: absolute;
+			left: 0;
+			bottom: 3px;
+			width: 100%;
+			height: 15px;
+			z-index: -1;
+			transition: all .3s ease-in-out;
+		}
+		&:hover::before {
+			bottom: 0;
+  			height: 100%;
+		}
+	}
 	.absolute-bottom-left {
 		bottom: 0px;
 		left: 0px;

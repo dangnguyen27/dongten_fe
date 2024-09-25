@@ -46,7 +46,7 @@ export class PodcastDetailCategoryComponent implements OnInit {
       ]
     }
   ];
-  slug: string = '';
+  slug: any;
   selectedIdEpisode: any;
   isShowPlayer: boolean = false;
 
@@ -54,7 +54,7 @@ export class PodcastDetailCategoryComponent implements OnInit {
     private readonly cmsService: CmsService,
     private readonly activedRoute: ActivatedRoute
   ) {
-    this.activedRoute.snapshot.paramMap.get('slug');
+    this.slug = this.activedRoute.snapshot.paramMap.get('slug');
   }
 
   ngOnInit(): void {
@@ -72,7 +72,7 @@ export class PodcastDetailCategoryComponent implements OnInit {
 
   getData() {
     this.cmsService.getDetailTaxonomy({slug: this.slug}).subscribe(res => {
-      this.category = res.category;
+      this.category = res.data;
     });
 
     this.cmsService.getListEpisodePodcast({slug: this.slug, page_size: 10}).subscribe(res => {

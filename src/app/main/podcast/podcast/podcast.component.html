@@ -8,12 +8,12 @@
         <div class="col-3" *ngFor="let item of newest" >
             <div class="podcast-newest-item">
                 <div routerLink="/podcast/{{ item.id }}">
-                    <img src="{{ item.image }}" alt="" class="rounded w-100">
-                    <small class="text-main-color mt-1">
+                    <img src="{{ item.image }}" alt="" class="rounded w-100 mb-2">
+                    <small class="text-main-color">
                         {{ item.taxonomy.title }}
                     </small>
                 </div>
-                <div routerLink="/podcast/{{ item.id }}">
+                <div routerLink="/podcast/{{ item.id }}" class="mt-4">
                     <h2 class="fw-bold" >{{ item.title }}</h2>
                     <p>{{ item.description }}</p>
                 </div>
@@ -62,7 +62,7 @@
                 <div class="d-flex align-items-center">
                     <img src="/assets/images/icons/headphone.svg" alt="">
                 </div>
-                <p>{{ itemC.category.description }}</p>
+                <p class="mt-3">{{ itemC.category.description }}</p>
             </div>
         </div>
         <div class="col-md-8">
