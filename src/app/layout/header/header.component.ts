@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
   listMenusLeft: any;
   listMenusRight: any;
   logoMenu: any;
+  idDisplay: any;
 
   constructor(
     private modalService: NgbModal,
@@ -121,5 +122,13 @@ export class HeaderComponent implements OnInit {
 
   onClickMenu() {
     console.log('x');
+  }
+
+  onHoverItemMega3(item: any) {
+    this.idDisplay = item.id;
+  }
+
+  onLeaveItemMega3() {
+    this.idDisplay = null
   }
 }

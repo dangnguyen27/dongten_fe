@@ -167,12 +167,15 @@
 
 <ng-template #nav_link_item let-item="item">
   
-    <a href="{{ item.menu_item_url ? item.menu_item_url : '#' }}"  class="nav-link fw-bold text-black {{ item.menu_item_show_template ? 'dropdown-toggle' : '' }} " data-bs-toggle="dropdown">
+    <a  routerLink="{{ item.menu_item_url ? item.menu_item_url : [] }}"  class="nav-link position-relative fw-bold text-black {{ item.menu_item_show_template ? 'dropdown-toggle' : '' }} " 
+    [attr.data-bs-toggle]="item.menu_item_show_template ? 'dropdown' : ''"
+    >
       <span class="icon-custom align-middle icon-custom-20 {{ getJsonValue(item.details, 'icon') }} me-2"></span>
       <span>{{ item.title }}</span>
     </a>
-
+    
     <div class="dropdown-menu megamenu" role="menu" *ngIf="item.menu_item_show_template">
+      <!-- <div class="arrow"></div> -->
       <div class="container suvu ">
           <ng-container *ngIf="item.menu_item_show_template == 'template_1'">
             <div class="p-4">
@@ -232,16 +235,26 @@
             </div>
           </ng-container>
           <ng-container *ngIf="item.menu_item_show_template == 'template_3'">
-            <div class="row">
-              <div class="col-md-3" style="background-color: #F5F5F5;">
-                <div *ngFor="let itemC of item.childs">
-                  <a href="" class="text-black"> <span class="icon-custom align-middle {{ getJsonValue(itemC.details, 'icon') }} icon-custom-20 me-2"></span> 
+            <div class="row template_3">
+              <div class="col-md-3 p-3 list-menu" style="background-color: #F5F5F5;">
+                <div class="py-2" *ngFor="let itemC of item.childs" (mouseenter)="onHoverItemMega3(itemC)" (mouseleave)="onLeaveItemMega3()">
+                  <a  href="" class="text-black"> <span class="icon-custom align-middle {{ getJsonValue(itemC.details, 'icon') }} icon-custom-20 me-2"></span> 
                     {{ itemC.title }}</a>
                 </div>
               </div>
-              <div class="col-md-9">
-                <div class="row">
+              <div class="col-md-9  p-3">
+                <div class="{{ !idDisplay ? 'row': 'd-none' }}">
                   <div class="col-md-3" *ngFor="let itemNews of item.l_items">
+                    <div>
+                      <img src="" alt="" class="w-100 rounded" [src]="itemNews.image">
+                    </div>
+                    <div>
+                      <a class="fw-bold text-black">{{ itemNews.title }}</a>
+                    </div>
+                  </div>
+                </div>
+                <div class=" {{ itemC.id == idDisplay ? 'row': 'd-none' }}" *ngFor="let itemC of item.childs">
+                  <div class="col-md-3" *ngFor="let itemNews of itemC.l_items">
                     <div>
                       <img src="" alt="" class="w-100 rounded" [src]="itemNews.image">
                     </div>
