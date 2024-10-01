@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CmsService } from 'src/app/services/cms.service';
+import { GroupCode, GroupMenuCode, MenuShowType, TaxonomyType } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-header',
@@ -54,20 +56,59 @@ export class HeaderComponent implements OnInit {
       category: 'Than hoc',
       image: '/assets/images/sample.jpeg'
     }
-  ]
+  ];
+  listMenusLeft: any;
+  listMenusRight: any;
+  logoMenu: any;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private readonly cmsService: CmsService
   ) {
 
   }
 
   ngOnInit(): void {
-    
+    this.getData();
   }
 
   modalClose() {
     this.modalRef.close();
+  }
+
+  getData() {
+    this.cmsService.getTaxonomiesByGroup({
+      code: GroupMenuCode.MAIN_MENU,
+      item_type: TaxonomyType.MENU,
+      page_size: -1
+    }).subscribe(res => {
+      let listMenus = res.data.items.filter((x: any) => x.menu_item_show_type != MenuShowType.LOGO);
+      
+      this.logoMenu = res.data.items.find((x: any) => x.menu_item_show_type == MenuShowType.LOGO);
+      this.listMenusLeft = listMenus.slice(0, Math.floor(listMenus.length / 2));
+      this.listMenusRight = listMenus.slice(Math.floor(listMenus.length / 2), listMenus.length);
+      console.log("listMenus", listMenus, this.listMenusRight);
+    })
+  }
+
+  getJsonValue(text: string, key: string) {
+    if(!text) {
+      return null;
+    }
+    try {
+      const obj = JSON.parse(text);
+      return obj[key] ? obj[key] : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  filterHasChilds(items: any, has: boolean = true) {
+    if(has) {
+      return items.filter((x: any)=> x.childs.length > 0)
+    } else {
+      return items.filter((x: any)=> x.childs.length < 1)
+    }    
   }
 
   onOpenSearch() {

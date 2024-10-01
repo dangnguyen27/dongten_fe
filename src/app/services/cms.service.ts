@@ -22,6 +22,10 @@ export class CmsService {
     return this._http.get<any>(`${environment.apiUrl}/cms-group/items`, {params: params});
   }
 
+  getTaxonomiesByGroup(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/cms-group/taxonomies`, {params: params});
+  }
+
   getItemsByTaxonomy(params: any = null) {
     return this._http.get<any>(`${environment.apiUrl}/taxonomy/items`, {params: params});
   }

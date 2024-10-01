@@ -27,11 +27,21 @@
             </div>
             <div class="slider__item slide-astronaut">
               <div class="slider__content h-100">
-                <div>
-                    <button type="button" class="btn btn-danger rounded-pill me-3" >Trở thành tu sĩ dòng Tên</button>
+                <div class="row h-100">
+                    <div class="col-8">
+                        <div class="title" style="padding-top: 100px; padding-left: 70px;">
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-danger rounded-pill me-3" >Trở thành tu sĩ dòng Tên</button>
+                            </div>
+                            <p class="text-wrap">Nếu bạn là những người nam, Công Giáo, tuổi từ 17, có sức khỏe tốt, ao ước phụng sự Chúa, phục vụ con người trong Giáo Hội Công Giáo.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-4 h-100">
+                        <div class="position-relative h-100"  ><img style="bottom: 0; right: 0;" src="/assets/images/slide2-thanh.png" class="position-absolute image astronaut"></div>
+                    </div>
                 </div>
                 
-                <div class="position-absolute" style="bottom: 0; right: 0;" ><img src="/assets/images/slide2-thanh.png" class="image astronaut"></div>
               </div>
             </div>
             <!-- <div class="slider__item slide-coffee">
@@ -79,8 +89,8 @@
             </div>
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let item of homeData[groupCode.TOP_HOME_NOIBAT].items">
-                    <img src="{{ item.image }}" alt="" class="rounded img-fluid">
-                    <h2 class="fw-bold mt-2">{{ item.title }}</h2>
+                    <img src="{{ item.image }}" alt="" class="img-thumb-large rounded img-fluid">
+                    <h2 class="fw-bold mt-2 title-2-lines">{{ item.title }}</h2>
                     <p class="text-body">{{ item.description }}</p>
                     <div>
                         
@@ -96,13 +106,13 @@
             <div class="row">
                 <div class="col-6 col-md-4" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(0,3)">
                     <div class="card p-3 border-0" >
-                        <img src="{{ item.image }}" class="card-img-top rounded" alt="...">
+                        <img src="{{ item.image }}" class="img-thumb-large card-img-top rounded" alt="...">
                         <span *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy" class="badge rounded-pill text-bg-warning me-2">
                             {{ item.item_taxonomies[0].taxonomy.title }}
                         </span>
                         <div class="pt-3 pb-3">
-                          <h5 class="card-title fw-bold">{{ item.title }}</h5>
-                          <p class="card-text text-body">{{ item.description }}</p>
+                          <h5 class="card-title fw-bold title-2-lines">{{ item.title }}</h5>
+                          <p class="card-text text-body text-3-lines">{{ item.description }}</p>
                         </div>
                         <div class="pt-2 pb-2 border-top">
                           <span class="float-start text-muted">1 ngay truoc</span>
@@ -115,17 +125,17 @@
                 <div class="col-12">
                     <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(3, homeData[groupCode.TOP_HOME_NEWEST].items.length)">
                         <div class="col-2">
-                            <img src="{{ item.image }}" alt="" class="rounded img-fluid">
+                            <img src="{{ item.image }}" alt="" class="img-thumb-small rounded img-fluid">
                         </div>
                         <div class="col-10">
                             <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                 <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
-                                <h3 class="fw-bold">{{ item.title }}</h3>
+                                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
                             </div>
                             <div>
-                                <p class="text-body">{{ item.description }}</p>
+                                <p class="text-body text-3-lines">{{ item.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -179,14 +189,14 @@
                         <div class="row" *ngFor="let item of newestPodcast">
                             <div class="col-2">
                                 <div class="ratio ratio-1x1">
-                                <img src="{{ item.image }}" alt="" class="img-fluid rounded">
-                            </div>
+                                    <img src="{{ item.image }}" alt="" class="img-fluid rounded">
+                                </div>
                             </div>
                             <div class="col-10">
-                                <h3 class="fw-bold">{{ item.title }}</h3>
-                                <p class="text-secondary">{{ item.description }}</p>
+                                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
+                                <p class="text-secondary text-3-lines">{{ item.description }}</p>
                                 <div class="d-flex align-items-start">
-                                    <a href="" class="play-action"><img src="/assets/images/icons/play.svg" alt=""></a>
+                                    <a [routerLink]="[]" (click)="onShowPlayer(item.id)" class="play-action"><img src="/assets/images/icons/play.svg" alt=""></a>
                                     <span class="text-secondary ms-4 me-2"><small>{{ item.release_date }}</small></span>
                                     <span class="ms-2 me-2 text-secondary">•</span>
                                     <span class="text-secondary"><small>{{ item.duration | convertSecondDuration }}</small></span>
@@ -319,7 +329,7 @@
                     <img src="{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold">{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].title }}</h2>
+                            <h2 class="text-white fw-bold title-2-lines">{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].title }}</h2>
                         </div>
                         <div>
                             <span class="badge rounded-pill text-bg-warning me-2"
@@ -336,15 +346,15 @@
                             <div class="row mb-2" *ngIf="i > 0">
                                 <div class="col-3">
                                     <div class="ratio ratio-1x1">
-                                        <img src="{{ item.image }}" alt="" class="img-fluid rounded">
+                                        <img src="{{ item.image }}" alt="" class="object-fit-cover img-fluid rounded">
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                         <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
                                     </div>
-                                    <h2 class="fw-bold">{{ item.title }}</h2>
-                                    <p class="text-body">{{ item.description }}</p>
+                                    <h2 class="fw-bold title-2-lines">{{ item.title }}</h2>
+                                    <p class="text-body text-3-lines">{{ item.description }}</p>
                                 </div>
                             </div>                        
                     </div>
@@ -362,7 +372,7 @@
                     <img src="{{ homeData[groupCode.HOME_SUYTU_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold">{{ homeData[groupCode.HOME_SUYTU_POST].items[0].title }}</h2>
+                            <h2 class="text-white fw-bold title-2-lines">{{ homeData[groupCode.HOME_SUYTU_POST].items[0].title }}</h2>
                         </div>
                         <div>
                             <span class="badge rounded-pill text-bg-warning me-2"
@@ -379,15 +389,15 @@
                             <div class="row mb-2" *ngIf="i > 0">
                                 <div class="col-3">
                                     <div class="ratio ratio-1x1">
-                                        <img src="{{ item.image }}" alt="" class="img-fluid rounded">
+                                        <img src="{{ item.image }}" alt="" class="object-fit-cover img-fluid rounded">
                                     </div>
                                 </div>
                                 <div class="col-9">
                                     <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                         <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
                                     </div>                                   
-                                    <h2 class="fw-bold">{{ item.title }}</h2>
-                                    <p class="text-body">{{ item.description }}</p>
+                                    <h2 class="fw-bold title-2-lines">{{ item.title }}</h2>
+                                    <p class="text-body text-3-lines">{{ item.description }}</p>
                                 </div>
                             </div>                        
                     </div>
@@ -407,8 +417,8 @@
             <div class="row" *ngIf="homeData[groupCode.HOME_NEWS].items[0]">
                 <div class="col-12">
                     <img src="{{ homeData[groupCode.HOME_NEWS].items[0].image }}" alt="" class="rounded w-100 mb-2">
-                    <h2 class="fw-bold">{{ homeData[groupCode.HOME_NEWS].items[0].title }}</h2>
-                    <p class="text-body">{{ homeData[groupCode.HOME_NEWS].items[0].description }}</p>
+                    <h2 class="fw-bold title-2-lines">{{ homeData[groupCode.HOME_NEWS].items[0].title }}</h2>
+                    <p class="text-body text-3-lines">{{ homeData[groupCode.HOME_NEWS].items[0].description }}</p>
                     <div class="pt-2 pb-2 border-top">
                         <span class="float-start text-muted">1 ngay truoc</span>
                         <a href="#" class="float-end text-muted"><img src="/assets/images/icons/share.svg" alt=""></a>
@@ -420,21 +430,23 @@
         <div class="col-6">
             <div class="row mt-3 custom-scrollbar" style="height: 380px;">
                 <div class="col-12">
-                    <div class="row" *ngFor="let item of homeData[groupCode.HOME_NEWS].items">
-                        <div class="col-2">
-                            <img src="{{ item.image }}" alt="" class="rounded img-fluid">
+                    <div class="row" *ngFor="let item of homeData[groupCode.HOME_NEWS].items; index as i">
+                        <ng-container *ngIf="i > 0">
+                        <div class="col-3">
+                            <img src="{{ item.image }}" alt="" class="img-thumb-medium rounded img-fluid">
                         </div>
-                        <div class="col-10">
+                        <div class="col-9">
                             <div class="mb-1"  *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                 <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
-                                <h3 class="fw-bold">{{ item.title }}</h3>
+                                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
                             </div>
                             <div>
-                                <p class="text-body">{{ item.description }}</p>
+                                <p class="text-body text-3-lines">{{ item.description }}</p>
                             </div>
                         </div>
+                    </ng-container>
                     </div>
                 </div>
             </div>
@@ -455,4 +467,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="bottom_pleyer w-100" *ngIf="isShowPlayer" style="position: fixed; bottom: 0;">
+    <button class="btn btn-secondary" (click)="closePlayer()" style="position: absolute; right: 0;">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1L1 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L16 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+    </button>
+    <app-player-audio [id]="selectedIdEpisode"></app-player-audio>
 </div>

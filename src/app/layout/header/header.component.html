@@ -2,10 +2,14 @@
   <div class="container">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+        <li class="nav-item {{ item.menu_item_show_template ? 'dropdown has-megamenu' : '' }} " *ngFor="let item of listMenusLeft">
+          <ng-container [ngTemplateOutlet]="nav_link_item" [ngTemplateOutletContext]="{item: item}"></ng-container>
+        </li>
+
+          <!-- <li class="nav-item active">
               <a  href="#" class=" nav-link fw-bold text-black"> <span class="icon-custom align-middle icon-dongten icon-custom-20 me-2"></span> DÒNG TÊN</a>
-          </li>
-          <li class="nav-item dropdown has-megamenu">
+          </li> -->
+          <!-- <li class="nav-item dropdown has-megamenu">
               <a href="#" (click)="onClickMenu()"  class="nav-link fw-bold dropdown-toggle text-black" data-bs-toggle="dropdown"><span class="icon-custom align-middle icon-suvu icon-custom-20 me-2"></span><span>SỨ VỤ</span></a>
 
               <div class="dropdown-menu megamenu" role="menu">
@@ -32,7 +36,7 @@
                             <a href="" class="text-black"> <span class="icon-custom align-middle icon-nhalinhthao icon-custom-20 me-2"></span> Nhà Linh Thao</a>
                           </div>                          
                         </div>
-                      </div>  <!-- col-megamenu.// -->
+                      </div>
                     </div>
                     <div class="col-lg-3 col-6">
                       <div class="col-megamenu">
@@ -52,7 +56,7 @@
                             <a href="" class="text-black"> <span class="icon-custom align-middle icon-tongdosinhvien icon-custom-20 me-2"></span> Tông Đồ Sinh Viên</a>
                           </div>                          
                         </div>
-                      </div>  <!-- col-megamenu.// -->
+                      </div>  
                     </div>
                     <div class="col-lg-3 col-6">
                       <div class="col-megamenu">
@@ -78,7 +82,7 @@
                             <a href="" class="text-black"> <span class="icon-custom align-middle icon-gioitrethanhthe icon-custom-20 me-2"></span> Giới Trẻ Thánh Thể</a>
                           </div>                           
                         </div>
-                      </div>  <!-- col-megamenu.// -->
+                      </div> 
                     </div>
                     <div class="col-lg-3 col-6">
                       <div class="col-megamenu">
@@ -98,7 +102,7 @@
                             <a href="" class="text-black"> <span class="icon-custom align-middle icon-xahoi icon-custom-20 me-2"></span> Tông Đồ Xã Hội</a>
                           </div>                          
                         </div>
-                      </div>  <!-- col-megamenu.// -->
+                      </div>
                     </div>
                   </div>
                   <div class="border-top mt-5">
@@ -121,21 +125,29 @@
                 </div>
                 
               </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
               <a  href="#"  class=" nav-link fw-bold text-black"><span class="icon-custom align-middle icon-custom-20 icon-linhdao me-2"></span>LINH ĐẠO</a>
-          </li>
+          </li> -->
       </ul>
   </div>
-  <div class="mx-auto order-0">
-      <a href="/" class="navbar-brand mx-auto" href="#"><img src="/assets/images/logo.svg" alt=""></a>
+  <div class="mx-auto order-0" *ngIf="logoMenu">
+      <a href="/" class="navbar-brand mx-auto" href="#"><img src="{{ logoMenu.image }}" alt="{{ logoMenu.title }}"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span class="navbar-toggler-icon"></span>
       </button>
   </div>
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item {{ item.menu_item_show_template ? 'dropdown has-megamenu' : '' }} " *ngFor="let item of listMenusRight">
+          <ng-container [ngTemplateOutlet]="nav_link_item" [ngTemplateOutletContext]="{item: item}"></ng-container>
+          <!-- <a href="{{ item.menu_item_url ? item.menu_item_url : '#' }}"  class="nav-link fw-bold text-black">
+            <span class="icon-custom align-middle icon-custom-20 {{ getJsonValue(item.details, 'icon') }} me-2"></span>
+            <span>{{ item.title }}</span>
+          </a> -->
+        </li>
+
+        <!-- <li class="nav-item">
           <a href="#"  class="nav-link fw-bold text-black"><span class="icon-custom align-middle icon-custom-20 icon-suytu me-2"></span><span>SUY TƯ</span></a>
         </li>
         <li class="nav-item">
@@ -143,7 +155,7 @@
         </li>
         <li class="nav-item">
           <a href="#"  class="nav-link fw-bold text-black"><span class="icon-custom align-middle icon-custom-20 icon-news me-2"></span><span>TIN TỨC</span></a>
-        </li>
+        </li> -->
 
         <li class="nav-item item-search">
           <a href="#" (click)="onOpenSearch()"  class="nav-link d-flex align-items-center"><span class="icon-custom icon-custom-20 align-middle icon-search"></span></a>
@@ -152,6 +164,98 @@
   </div>
 </div>
 </nav>
+
+<ng-template #nav_link_item let-item="item">
+  
+    <a href="{{ item.menu_item_url ? item.menu_item_url : '#' }}"  class="nav-link fw-bold text-black {{ item.menu_item_show_template ? 'dropdown-toggle' : '' }} " data-bs-toggle="dropdown">
+      <span class="icon-custom align-middle icon-custom-20 {{ getJsonValue(item.details, 'icon') }} me-2"></span>
+      <span>{{ item.title }}</span>
+    </a>
+
+    <div class="dropdown-menu megamenu" role="menu" *ngIf="item.menu_item_show_template">
+      <div class="container suvu ">
+          <ng-container *ngIf="item.menu_item_show_template == 'template_1'">
+            <div class="p-4">
+            <div class="row g-3">
+              <div class="col-lg-3 col-6" *ngFor="let itemC of filterHasChilds(item.childs)">
+                <div class="col-megamenu">
+                  <div class="position-relative ">
+                    <img src="{{ itemC.image }}" alt="" class="rounded w-100">
+                    <div class="position-absolute w-100 ps-2">
+                      <h3 class="text-white mb-0">{{ itemC.title }}</h3>
+                      <h6 class="title text-white">{{ itemC.description }}</h6>
+                    </div>
+                  </div>
+              
+                  <div class="mt-3">
+                    <div class="mb-2" *ngFor="let itemC2 of itemC.childs">
+                      <a href="" class="text-black"> <span class="icon-custom align-middle {{ getJsonValue(itemC2.details, 'icon') }} icon-custom-20 me-2"></span>
+                        {{ itemC2.title }}</a>
+                    </div>
+                  </div>
+                </div> <!-- col-megamenu.// -->
+              </div>
+            </div>
+            <div class="border-top mt-5">
+
+            </div>
+            <div class="row g-3 mt-5">
+              <div class="col-md-3 mt-0">
+                <h3 class="fw-bold">Sứ Vụ Khác</h3>
+              </div>
+              <div class="col-md-3 mt-0" *ngFor="let item of filterHasChilds(item.childs, false)">
+                <a href="" class="text-black"> <span class="icon-custom align-middle {{ getJsonValue(item.details, 'icon') }} icon-custom-20 me-2"></span> 
+                {{ item.title }}
+              </a>
+              </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="item.menu_item_show_template == 'template_2'">
+            <div class="p-4">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let itemC of item.childs">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="ratio ratio-1x1 shadow-sm">
+                      <span class="icon-custom {{ getJsonValue(itemC.details, 'icon') }} icon-custom-30 center-vertical-horiz"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <a href="" class="fw-bold text-black">{{ itemC.title }}</a>
+                    <p>{{ itemC.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="item.menu_item_show_template == 'template_3'">
+            <div class="row">
+              <div class="col-md-3" style="background-color: #F5F5F5;">
+                <div *ngFor="let itemC of item.childs">
+                  <a href="" class="text-black"> <span class="icon-custom align-middle {{ getJsonValue(itemC.details, 'icon') }} icon-custom-20 me-2"></span> 
+                    {{ itemC.title }}</a>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let itemNews of item.l_items">
+                    <div>
+                      <img src="" alt="" class="w-100 rounded" [src]="itemNews.image">
+                    </div>
+                    <div>
+                      <a class="fw-bold text-black">{{ itemNews.title }}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+      </div>
+    </div>
+</ng-template>
 
 <ng-template #modalSearch let-modal>
   <div class="modal-header">

@@ -164,6 +164,10 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   public homeData: any = {};
   groupCode = GroupCode;
   newestPodcast: any;
+
+  selectedIdEpisode: any;
+  isShowPlayer: boolean = false;
+  
   ngOnInit(): void {
     // let script = this._renderer2.createElement('script');
     //     // script.type = `application/ld+json`;        
@@ -220,6 +224,15 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
     })
     
     console.log(this.homeData);
+  }
+
+  onShowPlayer(id: any) {
+    this.selectedIdEpisode = id;
+    this.isShowPlayer = true;
+  }
+
+  closePlayer() {
+    this.isShowPlayer = false;
   }
 
   ngAfterViewInit(): void {

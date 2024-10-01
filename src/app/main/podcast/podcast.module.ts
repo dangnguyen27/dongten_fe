@@ -8,9 +8,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HomepageV1Component } from '../home/homepage-v1/homepage-v1.component';
 import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
-import { PlayerAudioComponent } from './player-audio/player-audio.component';
 import { SafeUrlPipe } from 'src/app/pipes/safe-url.pipe';
 import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
+import { SharePodcastComponentModule } from '../share-podcast-component/share-podcast-component.module';
 
 
 const routes: Routes = [
@@ -38,14 +38,14 @@ const routes: Routes = [
     PodcastListCategoryComponent,
     PodcastDetailCategoryComponent,
     PodcastDetailComponent,
-    PlayerAudioComponent,
   ],
   
   imports: [
     CommonModule,        
     RouterModule.forChild(routes),
     SlickCarouselModule,
-    SharePipeModule
+    SharePipeModule,
+    SharePodcastComponentModule
   ],
   providers: [
   ],

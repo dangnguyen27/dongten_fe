@@ -18,7 +18,11 @@ export enum GroupCode {
     HOME_LINHDAO_INTRO = 'HOME_LINHDAO_INTRO',
     HOME_LINHDAO_POST = 'HOME_LINHDAO_POST',
     HOME_SUYTU_POST = 'HOME_SUYTU_POST',
-    HOME_NEWS = 'HOME_NEWS'
+    HOME_NEWS = 'HOME_NEWS',
+}
+
+export enum GroupMenuCode {
+    MAIN_MENU = 'MAIN_MENU'
 }
 
 export enum ItemType {
@@ -30,5 +34,12 @@ export enum ItemType {
 export enum TaxonomyType {
     CATEGORY = 'category',
     TAG = 'tag',
-    PODCAST = 'podcast'
+    PODCAST = 'podcast',
+    MENU = 'menu'
+}
+
+export enum MenuShowType {
+    GRID = 'grid',
+    LIST = 'list',
+    LOGO = 'logo'
 }

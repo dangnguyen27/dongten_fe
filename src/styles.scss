@@ -215,6 +215,42 @@ body {
 		background: linear-gradient(0deg, #222222 0%, #56555A 100%);
 	}
 
+	.title-2-lines {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+				line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
+	.text-3-lines {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; /* number of lines to show */
+				line-clamp: 3;
+		-webkit-box-orient: vertical;
+	}
+
+	.img-thumb-large {
+		height: 150px;
+		width: auto;
+		object-fit: cover;
+	}
+
+	.img-thumb-medium {
+		height: 100px;
+		width: auto;
+		object-fit: cover;
+	}
+
+	.img-thumb-small {
+		height: 90px;
+		width: auto;
+		object-fit: cover;
+	}
+
 	.absolute-center-vertical {
 		top: 50%;    
     	transform: translate(0%, -50%);
@@ -262,6 +298,14 @@ body {
 	.icon-custom-20 {
 		width: 20px;
 		height: 20px;
+	}
+	.icon-custom-40 {
+		width: 40px;
+		height: 40px;
+	}
+	.icon-custom-30 {
+		width: 30px;
+		height: 30px;
 	}
 	.icon-dongten {
 		background-image: url("/assets/images/icons/dongten.svg");
@@ -325,6 +369,25 @@ body {
 	}
 	.icon-giaoduc {
 		background-image: url("/assets/images/icons/ic_giaoduc.svg");
+	}
+
+	.icon-lichsu {
+		background-image: url("/assets/images/icons/ic_lichsu.svg");
+	}
+	.icon-tamnhin {
+		background-image: url("/assets/images/icons/ic_tamnhin.svg");
+	}
+	.icon-dongten2 {
+		background-image: url("/assets/images/icons/ic_dongten2.svg");
+	}
+	.icon-tuongnho {
+		background-image: url("/assets/images/icons/ic_tuongnho.svg");
+	}
+	.icon-baovetreem {
+		background-image: url("/assets/images/icons/ic_baovetreem.svg");
+	}
+	.icon-lienhe {
+		background-image: url("/assets/images/icons/ic_lienhe.svg");
 	}
 
 	.zindex-50 {
