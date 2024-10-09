@@ -122,6 +122,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "headers": {
+              
+            }
+           },
           "configurations": {
             "production": {
               "browserTarget": "dongten:build:production"

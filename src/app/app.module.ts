@@ -23,6 +23,10 @@ const appRoutes: Routes = [
     path: 'forum',
     loadChildren: () => import('./main/forum/forum.module').then(m => m.ForumModule)
   },
+  {
+    path: 'account',
+    loadChildren: () => import('./main/account/account.module').then(m => m.AccountModule)
+  },
 ]
 
 @NgModule({

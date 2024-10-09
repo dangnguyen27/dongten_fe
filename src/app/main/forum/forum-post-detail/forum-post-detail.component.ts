@@ -1,10 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-forum-post-detail',
   templateUrl: './forum-post-detail.component.html',
   styleUrls: ['./forum-post-detail.component.scss']
 })
-export class ForumPostDetailComponent {
+export class ForumPostDetailComponent implements OnInit {
+  public data: any = {
+    title: 'Con đã từng quên có một Thiên Chúa yêu con như thế!',
+    body: `<p style="text-align: justify;"><span style="font-size: 19px;">Trong một thế giới mà những gì thuộc về vật chất và thiêng liêng thường được coi là đối lập nhau, chính thể thao nhắc nhớ chúng ta về sự hội nhất tự nhiên giữa thể xác, tâm trí và thiêng liêng. Với ý thức như vậy, luyện tập thể thao chính là một cơ hội tuyệt vời để thấy được sự hiện diện của Chúa, và trưởng thành hơn về nhân đức. Không chỉ giữ gìn vóc dáng, thể thao còn là một hoạt động làm phong phú thêm đời sống thiêng liêng và kéo chúng ta đến gần hơn với Chúa Kitô.</span></p>`,
+    comments: [
+      {
+        title: 'Tạ ơn',
+        body: 'Xin hết lòng tạ ơn Chúa',
+        created_at: '2024-10-03',
+        user: {
+          name: 'Jos D',
+          image: '/assets/images/sample_avatar.png'
+        },
+        childs: []
+      }
+    ],
+    user: {
+      name: 'Jos D',
+      image: '/assets/images/sample_avatar.png'
+    },
+    created_at: '2024-10-01'
+  }
+  ngOnInit(): void {
+    
+  }
 
 }

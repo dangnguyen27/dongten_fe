@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: '',
     component: ForumComponent
+  },
+  {
+    path: ':slug',
+    component: ForumPostDetailComponent
   }
 ];
 
