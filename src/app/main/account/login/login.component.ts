@@ -1,6 +1,9 @@
 import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
+import { AuthenService } from 'src/app/services/authen.service';
 import { environment } from 'src/environments/environment';
 declare var google: any;
 
@@ -10,20 +13,42 @@ declare var google: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit{
+  returnUrl: string = '/forum';
   constructor(
     private authService: SocialAuthService,
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
+    private readonly dtAuthenService: AuthenService,
+    private _route: ActivatedRoute,
+    private _router: Router,
   ) { }
   ngAfterViewInit(): void {
     // this.addJsToElement("/assets/js/gsi.js");
-    
-
   }
   ngOnInit(): void {
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/forum';
+
     google.accounts.id.initialize({
       client_id: environment.google_oauth_client_id,
       callback: (res: any) => {
+        //call api login
+        const data = {
+          type: 'google',
+          token: res.credential
+        }
+        this.dtAuthenService.loginOauth(data).pipe(first())
+        .subscribe(
+          data => {
+            console.log('===data===');
+            console.log(data);
+            this._router.navigate([this.returnUrl]);
+          },
+          error => {
+            console.log(error);
+            // this.error = error;
+            // this.loading = false;
+          }
+        );
         console.log(res);
       }
     });

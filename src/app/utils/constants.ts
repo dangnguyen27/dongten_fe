@@ -1,6 +1,7 @@
 export enum ObjectLocalStorage {
     CURRENT_QUERY = 'currentQuery',
     CURRENT_PAYMENT = 'currentPayment',
+    CURRENT_USER = 'currentUser',
 }
 
 export enum MNO {

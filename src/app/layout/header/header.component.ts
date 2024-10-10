@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenService } from 'src/app/services/authen.service';
 import { CmsService } from 'src/app/services/cms.service';
 import { GroupCode, GroupMenuCode, MenuShowType, TaxonomyType } from 'src/app/utils/constants';
 
@@ -61,12 +62,15 @@ export class HeaderComponent implements OnInit {
   listMenusRight: any;
   logoMenu: any;
   idDisplay: any;
-
+  currentUser: any;
   constructor(
     private modalService: NgbModal,
-    private readonly cmsService: CmsService
+    private readonly cmsService: CmsService,
+    private readonly authenService: AuthenService
   ) {
-
+    this.authenService.currentUser.subscribe((res: any) => {
+      this.currentUser = res;
+    })
   }
 
   ngOnInit(): void {
@@ -75,6 +79,10 @@ export class HeaderComponent implements OnInit {
 
   modalClose() {
     this.modalRef.close();
+  }
+
+  logOut() {
+    this.authenService.theUser = null
   }
 
   getData() {

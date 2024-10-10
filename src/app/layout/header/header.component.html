@@ -2,6 +2,16 @@
   <div class="container">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item item-account dropdown" *ngIf="currentUser">
+          <a href="#" class="nav-link d-flex align-items-center" data-bs-toggle="dropdown">
+            <img src="{{ currentUser.image }}" alt=""  class="rounded-circle" width="30px">
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" routerLink="/forum">Diễn đàn</a></li>
+            <li><a class="dropdown-item" routerLink="/account/profile">Tài khoản</a></li>
+            <li><a class="dropdown-item" routerLink="[]" (click)="logOut()">Đăng xuất</a></li>
+          </ul>
+        </li>
         <li class="nav-item {{ item.menu_item_show_template ? 'dropdown has-megamenu' : '' }} " *ngFor="let item of listMenusLeft">
           <ng-container [ngTemplateOutlet]="nav_link_item" [ngTemplateOutletContext]="{item: item}"></ng-container>
         </li>
