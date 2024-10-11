@@ -1,0 +1,55 @@
+<div class="container pb-200 pt-100" >
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ list[0].image }}" alt="" class="rounded w-100 mb-2">
+                    <h2 class="fw-bold title-2-lines">{{ list[0].title }}</h2>
+                    <p class="text-body text-3-lines">{{ list[0].description }}</p>
+                    <div class="pt-2 pb-2 border-top">
+                        <span class="float-start text-muted">{{ list[0].created_at | dateAgo }}</span>
+                        <a href="#" class="float-end text-muted"><img src="/assets/images/icons/share.svg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row" *ngFor="let item of list.slice(1,5)">                        
+                            <div class="col-3">
+                                <img src="{{ item.image }}" alt="" class="img-thumb-medium rounded img-fluid">
+                            </div>
+                            <div class="col-9">
+                                <div class="mb-1"
+                                    *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                                    <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
+                                </div>
+                                <div>
+                                    <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
+                                </div>
+                                <div>
+                                    <p class="text-body text-3-lines">{{ item.description }}</p>
+                                </div>
+                            </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngFor="let item of list.slice(6,list.length)">
+        <div class="col-3">
+            <img src="{{ item.image }}" alt="" class="img-thumb-medium rounded img-fluid">
+        </div>
+        <div class="col-9">
+            <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
+                <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
+            </div>
+            <div>
+                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
+            </div>
+            <div>
+                <p class="text-body text-3-lines">{{ item.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CmsService } from 'src/app/services/cms.service';
+import { ItemType } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-forum-post-detail',
@@ -27,8 +30,32 @@ export class ForumPostDetailComponent implements OnInit {
     },
     created_at: '2024-10-01'
   }
+  slug: any;
+  searchComment = {
+    id: '',
+    page: 1,
+    page_size: 30
+  }
+  comments: any;
+  totalComment: any;
+  constructor(
+    private readonly activedRoute: ActivatedRoute,
+    private readonly cmsService: CmsService
+  ) {
+    this.slug = this.activedRoute.snapshot.paramMap.get('slug');
+  }
   ngOnInit(): void {
-    
+    this.getData()
+  }
+
+  getData() {
+    this.cmsService.getDetailItem(this.slug, ItemType.forum).subscribe(res => {
+      this.data = res.data.item;
+      this.cmsService.getComments(this.data.id, this.searchComment).subscribe(res => {
+        this.comments = res.data.items;
+        this.totalComment = res.data.count;
+      })
+    })
   }
 
 }

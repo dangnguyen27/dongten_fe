@@ -9,17 +9,29 @@ import { StripHtmlTagPipe } from 'src/app/pipes/stripHtmlTag.pipe';
 import { ConvertSecondDurationPipe } from 'src/app/pipes/convertSecondDuration.pipe';
 import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 import { SharePodcastComponentModule } from '../share-podcast-component/share-podcast-component.module';
+import { PostCategoryComponent } from './post-category/post-category.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomepageV1Component
   },
+  {
+    path: 'category/:slug',
+    component: PostCategoryComponent
+  },
+  {
+    path: ':slug',
+    component: PostDetailComponent
+  }
 ];
 
 @NgModule({
   declarations: [
-    HomepageV1Component
+    HomepageV1Component,
+    PostCategoryComponent,
+    PostDetailComponent
   ],
   
   imports: [

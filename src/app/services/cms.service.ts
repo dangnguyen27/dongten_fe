@@ -30,8 +30,12 @@ export class CmsService {
     return this._http.get<any>(`${environment.apiUrl}/taxonomy/items`, {params: params});
   }
 
-  getDetailItem(slug: string) {
-    return this._http.get<any>(`${environment.apiUrl}/item?slug=${slug}`);
+  getDetailItem(slug: string, item_type: string) {
+    return this._http.get<any>(`${environment.apiUrl}/item/detail?slug=${slug}&item_type=${item_type}`);
+  }
+
+  getComments(id: number, params: any) {
+    return this._http.get<any>(`${environment.apiUrl}/item/${id}/comments`, {params: params});
   }
 
   getNewestPodcast(params: any = null) {
