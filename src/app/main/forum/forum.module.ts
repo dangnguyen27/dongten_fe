@@ -6,10 +6,11 @@ import { ForumPostDetailComponent } from './forum-post-detail/forum-post-detail.
 import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ForumItemComponent } from './forum-item/forum-item.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: ForumComponent
   },
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
   imports: [    
     CommonModule,        
     RouterModule.forChild(routes),
+    FormsModule,
     SlickCarouselModule
   ]
 })

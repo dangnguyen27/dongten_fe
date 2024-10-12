@@ -3,6 +3,8 @@ export const environment = {
   hmr: false,
   // apiUrl: 'https://sandbox-api.g99.vn/api',  
   apiUrl: 'http://localhost:4000/api',  
+  socketUrl: 'http://localhost:3006',  
+
   google_oauth_client_id: '369733021691-reiknt8t9jh4je1gs1p0cv7h8799scug.apps.googleusercontent.com',
   FCM_VAPID_PUBLIC_KEY: 'BD1zjiNqZGojPvrF2BBbUNe_zv_tq9q4ftHSlCJlxTugdNZpMbV7r_e6YjKIpToTWt_PVoJQwFisoEk-HI2ASEo',
   firebaseConfig: {

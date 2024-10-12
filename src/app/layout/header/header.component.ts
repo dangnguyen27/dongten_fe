@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs';
 import { AuthenService } from 'src/app/services/authen.service';
 import { CmsService } from 'src/app/services/cms.service';
+import { SocketService } from 'src/app/services/socket.service';
 import { GroupCode, GroupMenuCode, MenuShowType, TaxonomyType } from 'src/app/utils/constants';
 
 @Component({
@@ -66,15 +70,32 @@ export class HeaderComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private readonly cmsService: CmsService,
-    private readonly authenService: AuthenService
+    private readonly authenService: AuthenService,
+    private readonly socketService: SocketService,
+    private readonly toastrService: ToastrService,
+    private readonly router: Router
   ) {
     this.authenService.currentUser.subscribe((res: any) => {
       this.currentUser = res;
+      if(this.currentUser && this.currentUser.token) {
+        this.socketService.start(this.currentUser.token);
+        this.socketService.getNewNotify().subscribe(res => {
+          console.log(res);
+          if(res) {
+            const toastr = this.toastrService.info(res.message, '', {timeOut: 5500, closeButton: true})
+            toastr.onTap.subscribe( (action) => {
+              console.log("click toast");
+              this.router.navigateByUrl(`/forum/${res.item.slug}`)
+            })
+          }      
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.getData();
+       
   }
 
   modalClose() {
@@ -82,7 +103,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.authenService.theUser = null
+    this.authenService.theUser = null;    
   }
 
   getData() {

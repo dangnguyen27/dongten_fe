@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CmsService } from 'src/app/services/cms.service';
+import { SocketService } from 'src/app/services/socket.service';
 import { ItemType } from 'src/app/utils/constants';
 
 @Component({
@@ -38,14 +39,22 @@ export class ForumPostDetailComponent implements OnInit {
   }
   comments: any;
   totalComment: any;
+  commentBody: any;
   constructor(
     private readonly activedRoute: ActivatedRoute,
-    private readonly cmsService: CmsService
+    private readonly cmsService: CmsService,
+    private readonly socketService: SocketService
   ) {
     this.slug = this.activedRoute.snapshot.paramMap.get('slug');
   }
   ngOnInit(): void {
-    this.getData()
+    this.getData();
+    this.socketService.getNewComment().subscribe((res: any) => {
+      console.log(res);
+      if(res) {
+        this.comments.push(res.data)
+      }      
+    })
   }
 
   getData() {
@@ -56,6 +65,14 @@ export class ForumPostDetailComponent implements OnInit {
         this.totalComment = res.data.count;
       })
     })
+  }
+
+  onPostComment() {
+    const data = {
+      item_id: this.data.id,
+      body: this.commentBody
+    }
+    console.log("onPostComment", data);
   }
 
 }

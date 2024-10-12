@@ -34,6 +34,10 @@ export class CmsService {
     return this._http.get<any>(`${environment.apiUrl}/item/detail?slug=${slug}&item_type=${item_type}`);
   }
 
+  postComment(data: any) {
+    return this._http.post<any>(`${environment.apiUrl}/comemnt`, data);
+  }
+
   getComments(id: number, params: any) {
     return this._http.get<any>(`${environment.apiUrl}/item/${id}/comments`, {params: params});
   }
