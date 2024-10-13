@@ -90,7 +90,7 @@
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let item of homeData[groupCode.TOP_HOME_NOIBAT].items">
                     <img src="{{ item.image }}" alt="" class="img-thumb-large rounded img-fluid">
-                    <h2 class="fw-bold mt-2 title-2-lines">{{ item.title }}</h2>
+                    <h2 class="fw-bold mt-2 title-2-lines"><a class="text-black" href="#" routerLink="/{{item.slug}}">{{ item.title }}</a></h2>
                     <p class="text-body">{{ item.description }}</p>
                     <div>
                         
@@ -111,7 +111,7 @@
                             {{ item.item_taxonomies[0].taxonomy.title }}
                         </span>
                         <div class="pt-3 pb-3">
-                          <h5 class="card-title fw-bold title-2-lines">{{ item.title }}</h5>
+                          <h5 class="card-title fw-bold title-2-lines"> <a class="text-black" href="#" routerLink="/{{item.slug}}">{{ item.title }}</a></h5>
                           <p class="card-text text-body text-3-lines">{{ item.description }}</p>
                         </div>
                         <div class="pt-2 pb-2 border-top">
@@ -132,7 +132,7 @@
                                 <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
-                                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
+                                <h3 class="fw-bold title-2-lines"><a class="text-black" href="#" routerLink="/{{item.slug}}">{{ item.title }}</a></h3>
                             </div>
                             <div>
                                 <p class="text-body text-3-lines">{{ item.description }}</p>
@@ -329,7 +329,10 @@
                     <img src="{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold title-2-lines">{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].title }}</h2>
+                            <h2 class="text-white fw-bold title-2-lines">
+                                <a class="text-white" href="#" routerLink="/{{homeData[groupCode.HOME_LINHDAO_POST].items[0].slug}}">
+                                    {{ homeData[groupCode.HOME_LINHDAO_POST].items[0].title }}
+                                </a></h2>
                         </div>
                         <div>
                             <span class="badge rounded-pill text-bg-warning me-2"
@@ -337,7 +340,7 @@
                              && homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies[0].taxonomy">
                             {{ homeData[groupCode.HOME_LINHDAO_POST].items[0].item_taxonomies[0].taxonomy.title }} 
                             </span>
-                            <span class="text-white"><i class="far fa-clock"></i> 2 gio truoc</span>
+                            <span class="text-white"><i class="far fa-clock"></i>{{ homeData[groupCode.HOME_LINHDAO_POST].items[0].created_at | dateAgo }}</span>
                         </div>
                     </div>
                 </div>
@@ -353,7 +356,10 @@
                                     <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                         <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
                                     </div>
-                                    <h2 class="fw-bold title-2-lines">{{ item.title }}</h2>
+                                    <h2 class="fw-bold title-2-lines">
+                                        <a class="text-black" href="#" routerLink="/{{item.slug}}">
+                                            {{ item.title }}
+                                        </a></h2>
                                     <p class="text-body text-3-lines">{{ item.description }}</p>
                                 </div>
                             </div>                        
@@ -372,7 +378,11 @@
                     <img src="{{ homeData[groupCode.HOME_SUYTU_POST].items[0].image }}" alt="" class="w-100 rounded">
                     <div class="caption p-4 w-100">
                         <div>
-                            <h2 class="text-white fw-bold title-2-lines">{{ homeData[groupCode.HOME_SUYTU_POST].items[0].title }}</h2>
+                            <h2 class="text-white fw-bold title-2-lines">
+                                <a class="text-white" href="#" routerLink="/{{homeData[groupCode.HOME_SUYTU_POST].items[0].slug}}">
+                                    {{ homeData[groupCode.HOME_SUYTU_POST].items[0].title }}
+                                </a>
+                                </h2>
                         </div>
                         <div>
                             <span class="badge rounded-pill text-bg-warning me-2"
@@ -380,7 +390,7 @@
                              && homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies[0].taxonomy">
                             {{ homeData[groupCode.HOME_SUYTU_POST].items[0].item_taxonomies[0].taxonomy.title }} 
                             </span>
-                            <span class="text-white"><i class="far fa-clock"></i> 2 gio truoc</span>
+                            <span class="text-white"><i class="far fa-clock"></i> {{ homeData[groupCode.HOME_SUYTU_POST].items[0].created_at | dateAgo }}</span>
                         </div>
                     </div>
                 </div>
@@ -396,7 +406,10 @@
                                     <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                         <small class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</small>
                                     </div>                                   
-                                    <h2 class="fw-bold title-2-lines">{{ item.title }}</h2>
+                                    <h2 class="fw-bold title-2-lines">
+                                        <a class="text-black" href="#" routerLink="/{{item.slug}}">{{ item.title }}
+                                        </a>
+                                        </h2>
                                     <p class="text-body text-3-lines">{{ item.description }}</p>
                                 </div>
                             </div>                        
@@ -417,7 +430,11 @@
             <div class="row" *ngIf="homeData[groupCode.HOME_NEWS].items[0]">
                 <div class="col-12">
                     <img src="{{ homeData[groupCode.HOME_NEWS].items[0].image }}" alt="" class="rounded w-100 mb-2">
-                    <h2 class="fw-bold title-2-lines">{{ homeData[groupCode.HOME_NEWS].items[0].title }}</h2>
+                    <h2 class="fw-bold title-2-lines">
+                        <a class="text-black" href="#" routerLink="/{{homeData[groupCode.HOME_NEWS].items[0].slug}}">
+                            {{ homeData[groupCode.HOME_NEWS].items[0].title }}
+                        </a>
+                        </h2>
                     <p class="text-body text-3-lines">{{ homeData[groupCode.HOME_NEWS].items[0].description }}</p>
                     <div class="pt-2 pb-2 border-top">
                         <span class="float-start text-muted">{{ homeData[groupCode.HOME_NEWS].items[0].created_at | dateAgo }}</span>
@@ -440,7 +457,10 @@
                                 <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>
                             <div>
-                                <h3 class="fw-bold title-2-lines">{{ item.title }}</h3>
+                                <h3 class="fw-bold title-2-lines">
+                                    <a class="text-black" href="#" routerLink="/{{ item.slug }}">{{ item.title }}
+                                    </a>
+                                    </h3>
                             </div>
                             <div>
                                 <p class="text-body text-3-lines">{{ item.description }}</p>

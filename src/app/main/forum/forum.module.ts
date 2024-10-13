@@ -7,11 +7,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ForumItemComponent } from './forum-item/forum-item.component';
 import { FormsModule } from '@angular/forms';
+import { ShareComponentModule } from '../share-component/share-component.module';
+import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 
 const routes: Routes = [
   {
     path: 'home',
     component: ForumComponent
+  },
+  {
+    path: 'category/:slug',
+    component: ForumCategoryComponent
   },
   {
     path: ':slug',
@@ -31,7 +37,9 @@ const routes: Routes = [
     CommonModule,        
     RouterModule.forChild(routes),
     FormsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    ShareComponentModule,
+    SharePipeModule
   ]
 })
 export class ForumModule { }

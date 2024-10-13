@@ -72,7 +72,7 @@ export class PodcastDetailCategoryComponent implements OnInit {
 
   getData() {
     this.cmsService.getDetailTaxonomy({slug: this.slug}).subscribe(res => {
-      this.category = res.data;
+      this.category = res.data.taxonomy;
     });
 
     this.cmsService.getListEpisodePodcast({slug: this.slug, page_size: 10}).subscribe(res => {

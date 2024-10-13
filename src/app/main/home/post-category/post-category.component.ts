@@ -16,6 +16,23 @@ export class PostCategoryComponent implements OnInit {
 		page_size: 20,
 		item_type: ItemType.post
 	}
+
+	contentHeader = {
+		headerTitle: 'Danh sách',
+		actionButton: true,
+		breadcrumb: {
+			type: '',
+			links: [
+				{
+					name: 'Trang chủ',
+					isLink: true,
+					link: '/'
+				},				
+			]
+		}
+	};
+	listCategory: any;
+
 	constructor(
 		private readonly cmsService: CmsService,
 		private readonly activedRoute: ActivatedRoute
@@ -30,6 +47,10 @@ export class PostCategoryComponent implements OnInit {
 	getData() {		
 		this.cmsService.getItemsByTaxonomy({...this.search, ...{slug: this.slug}}).subscribe((res: any) => {
 			this.list  = res.data.items
+		})
+		this.cmsService.getDetailTaxonomy({slug: this.slug}).subscribe(res => {
+			this.contentHeader.headerTitle = res.data.taxonomy.title;
+			this.listCategory = res.data.childs;
 		})
 	}
 

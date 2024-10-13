@@ -1,22 +1,68 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CmsService } from 'src/app/services/cms.service';
 
 @Component({
   selector: 'app-forum-category',
   templateUrl: './forum-category.component.html',
-  styleUrls: ['./forum-category.component.scss']
+  styleUrls: ['./forum-category.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ForumCategoryComponent  implements OnInit, AfterViewInit {
+  slug: any;
+  search = {
+    page: 1,
+    page_size: 16
+  }
+  list: any;
+  total: any;
+
+  contentHeader = {
+    headerTitle: 'Danh sách',
+    actionButton: true,
+    breadcrumb: {
+      type: '',
+      links: [
+        {
+          name: 'Trang chủ',
+          isLink: true,
+          link: '/'
+        },
+        {
+          name: 'Diễn Đàn',
+          isLink: true,
+          link: '/forum/home'
+        },
+        {
+          name: 'Chuyên mục',
+          isLink: false,          
+        },
+      ]
+    }
+  };
 
   constructor(
     private _renderer2: Renderer2, 
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+    private readonly activedRoute: ActivatedRoute,
+    private readonly cmsService: CmsService
   ) {
-
+    this.slug = this.activedRoute.snapshot.paramMap.get('slug');
   }
 
   ngOnInit(): void {
-    
+    this.getData();
+  }
+
+  getData() {
+    this.cmsService.getItemsByTaxonomy({...this.search, ...{slug: this.slug}}).subscribe( (res: any) => {
+      this.list = res.data.items;
+      this.total = res.data.count;
+    });
+    this.cmsService.getDetailTaxonomy({slug: this.slug}).subscribe(res => {
+      this.contentHeader.headerTitle = res.data.taxonomy.title;
+    })
   }
 
   ngAfterViewInit(): void {    

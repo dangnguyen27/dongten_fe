@@ -13,7 +13,7 @@ declare var google: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit{
-  returnUrl: string = '/forum';
+  returnUrl: string = '/forum/home';
   constructor(
     private authService: SocialAuthService,
     private _renderer2: Renderer2, 
@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
     google.accounts.id.renderButton(document.getElementById('google-btn'), {      
       size: 'large',
-      shape: 'rectangle'
+      shape: 'rectangle',
+      width: '300'
     })
   }
   signInWithGoogle(): void {

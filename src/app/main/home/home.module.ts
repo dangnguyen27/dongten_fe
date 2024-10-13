@@ -11,6 +11,7 @@ import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 import { SharePodcastComponentModule } from '../share-podcast-component/share-podcast-component.module';
 import { PostCategoryComponent } from './post-category/post-category.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { ShareComponentModule } from '../share-component/share-component.module';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SlickCarouselModule,
     SharePipeModule,
-    SharePodcastComponentModule
+    SharePodcastComponentModule,
+    ShareComponentModule
   ],
   providers: [
   ],

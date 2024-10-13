@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CmsService } from 'src/app/services/cms.service';
 import { SocketService } from 'src/app/services/socket.service';
@@ -9,7 +9,7 @@ import { ItemType } from 'src/app/utils/constants';
   templateUrl: './forum-post-detail.component.html',
   styleUrls: ['./forum-post-detail.component.scss']
 })
-export class ForumPostDetailComponent implements OnInit {
+export class ForumPostDetailComponent implements OnInit, OnDestroy {
   public data: any = {
     title: 'Con đã từng quên có một Thiên Chúa yêu con như thế!',
     body: `<p style="text-align: justify;"><span style="font-size: 19px;">Trong một thế giới mà những gì thuộc về vật chất và thiêng liêng thường được coi là đối lập nhau, chính thể thao nhắc nhớ chúng ta về sự hội nhất tự nhiên giữa thể xác, tâm trí và thiêng liêng. Với ý thức như vậy, luyện tập thể thao chính là một cơ hội tuyệt vời để thấy được sự hiện diện của Chúa, và trưởng thành hơn về nhân đức. Không chỉ giữ gìn vóc dáng, thể thao còn là một hoạt động làm phong phú thêm đời sống thiêng liêng và kéo chúng ta đến gần hơn với Chúa Kitô.</span></p>`,
@@ -40,6 +40,31 @@ export class ForumPostDetailComponent implements OnInit {
   comments: any;
   totalComment: any;
   commentBody: any;
+  subComment: any;
+  contentHeader = {
+    headerTitle: 'Danh sách',
+    actionButton: true,
+    breadcrumb: {
+      type: '',
+      links: [
+        {
+          name: 'Trang chủ',
+          isLink: true,
+          link: '/'
+        },
+        {
+          name: 'Diễn Đàn',
+          isLink: true,
+          link: '/forum/home'
+        },
+        {
+          name: 'Chuyên mục',
+          isLink: false,          
+        },
+      ]
+    }
+  };
+
   constructor(
     private readonly activedRoute: ActivatedRoute,
     private readonly cmsService: CmsService,
@@ -47,9 +72,14 @@ export class ForumPostDetailComponent implements OnInit {
   ) {
     this.slug = this.activedRoute.snapshot.paramMap.get('slug');
   }
+  ngOnDestroy(): void {
+    if(this.subComment) {
+      this.subComment.unsubscribe();
+    }    
+  }
   ngOnInit(): void {
     this.getData();
-    this.socketService.getNewComment().subscribe((res: any) => {
+    this.subComment = this.socketService.getNewComment().subscribe((res: any) => {
       console.log(res);
       if(res) {
         this.comments.push(res.data)
@@ -60,6 +90,12 @@ export class ForumPostDetailComponent implements OnInit {
   getData() {
     this.cmsService.getDetailItem(this.slug, ItemType.forum).subscribe(res => {
       this.data = res.data.item;
+      this.contentHeader.headerTitle = this.data.title;
+      this.contentHeader.breadcrumb.links.push({
+        name: this.data.item_taxonomies[0].taxonomy.title,
+        isLink: true,
+        link: '/forum/category/' + this.data.item_taxonomies[0].taxonomy.slug
+      })
       this.cmsService.getComments(this.data.id, this.searchComment).subscribe(res => {
         this.comments = res.data.items;
         this.totalComment = res.data.count;

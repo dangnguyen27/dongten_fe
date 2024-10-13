@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { CmsService } from 'src/app/services/cms.service';
+import { ItemType } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-forum',
@@ -7,44 +9,7 @@ import { AfterViewInit, Component, Inject, OnInit, Renderer2 } from '@angular/co
   styleUrls: ['./forum.component.scss']
 })
 export class ForumComponent implements OnInit, AfterViewInit {
-  public listCategory = [
-    {
-      title: 'Hỏi - Đáp',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/hoi_dap.png'
-    },
-    {
-      title: 'Văn Kiện',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/van_kien.png'
-    },
-    {
-      title: 'Truyền Giáo',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/truyen_giao.png'
-    },
-    {
-      title: 'Tài Liệu',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/tai_lieu.png'
-    },
-    {
-      title: 'Kinh Thánh',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/kinh_thanh.png'
-    },
-    {
-      title: 'Giáo Hội',
-      count_post: 1000,
-      count_comment: 5000,
-      image: '/assets/images/giao_hoi.png'
-    }
-  ]
+  public listCategory: any;
 
   public newest = [
     {
@@ -171,12 +136,23 @@ export class ForumComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _renderer2: Renderer2, 
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
+
+    private readonly cmsService: CmsService
   ) {
 
   }
   ngOnInit(): void {
-    
+    this.getData();
+  }
+
+  getData() {
+    this.cmsService.getAllItems({item_type: ItemType.forum}).subscribe( (res: any) => {
+      this.newest = res.data.items;
+    })
+    this.cmsService.getListTaxonomy({type: ItemType.forum}).subscribe( (res: any) => {
+      this.listCategory = res.data.items;
+    })
   }
 
   ngAfterViewInit(): void {    

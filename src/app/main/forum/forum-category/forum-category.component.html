@@ -1,1 +1,13 @@
-<p>forum-category works!</p>
+<div class="container pb-200 pt-100" >
+    <div class="row">
+        <app-breadcrumb [breadcrumb]="contentHeader.breadcrumb" ></app-breadcrumb>
+    </div>
+    <div class="row mt-2">
+        <h1 class="fw-bold">{{ contentHeader.headerTitle }}</h1>
+    </div>
+    <div class="row mt-3"  data-masonry='{"percentPosition": true }'>
+        <div class="col-md-3 mb-4" *ngFor="let item of list" >
+            <app-forum-item [item]="item" ></app-forum-item>
+        </div>
+    </div>
+</div>
