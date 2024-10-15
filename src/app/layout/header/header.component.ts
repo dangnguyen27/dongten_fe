@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import { GroupCode, GroupMenuCode, MenuShowType, TaxonomyType } from 'src/app/ut
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('modalSearch') modalSearch: any;
 
   modalRef: any;
@@ -67,6 +67,8 @@ export class HeaderComponent implements OnInit {
   logoMenu: any;
   idDisplay: any;
   currentUser: any;
+  subAuthen: any;
+  subSocket: any;
   constructor(
     private modalService: NgbModal,
     private readonly cmsService: CmsService,
@@ -75,11 +77,11 @@ export class HeaderComponent implements OnInit {
     private readonly toastrService: ToastrService,
     private readonly router: Router
   ) {
-    this.authenService.currentUser.subscribe((res: any) => {
+    this.subAuthen = this.authenService.currentUser.subscribe((res: any) => {
       this.currentUser = res;
       if(this.currentUser && this.currentUser.token) {
         this.socketService.start(this.currentUser.token);
-        this.socketService.getNewNotify().subscribe(res => {
+        this.subSocket = this.socketService.getNewNotify().subscribe(res => {
           console.log(res);
           if(res) {
             const toastr = this.toastrService.info(res.message, '', {timeOut: 5500, closeButton: true})
@@ -91,6 +93,14 @@ export class HeaderComponent implements OnInit {
         })
       }
     })
+  }
+  ngOnDestroy(): void {
+    if(this.subAuthen) {
+      this.subAuthen.unsubscribe();
+    }
+    if(this.subSocket) {
+      this.subSocket.unsubscribe();
+    }        
   }
 
   ngOnInit(): void {

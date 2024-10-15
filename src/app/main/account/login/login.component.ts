@@ -1,6 +1,6 @@
 import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AuthenService } from 'src/app/services/authen.service';
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
     private authService: SocialAuthService,
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
+    @Inject(PLATFORM_ID) private platformId: any,
     private readonly dtAuthenService: AuthenService,
     private _route: ActivatedRoute,
     private _router: Router,
@@ -27,37 +28,38 @@ export class LoginComponent implements OnInit, AfterViewInit{
   }
   ngOnInit(): void {
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/forum';
-
-    google.accounts.id.initialize({
-      client_id: environment.google_oauth_client_id,
-      callback: (res: any) => {
-        //call api login
-        const data = {
-          type: 'google',
-          token: res.credential
-        }
-        this.dtAuthenService.loginOauth(data).pipe(first())
-        .subscribe(
-          data => {
-            console.log('===data===');
-            console.log(data);
-            this._router.navigate([this.returnUrl]);
-          },
-          error => {
-            console.log(error);
-            // this.error = error;
-            // this.loading = false;
+    if (isPlatformBrowser(this.platformId)) {
+      google.accounts.id.initialize({
+        client_id: environment.google_oauth_client_id,
+        callback: (res: any) => {
+          //call api login
+          const data = {
+            type: 'google',
+            token: res.credential
           }
-        );
-        console.log(res);
-      }
-    });
+          this.dtAuthenService.loginOauth(data).pipe(first())
+          .subscribe(
+            data => {
+              console.log('===data===');
+              console.log(data);
+              this._router.navigate([this.returnUrl]);
+            },
+            error => {
+              console.log(error);
+              // this.error = error;
+              // this.loading = false;
+            }
+          );
+          console.log(res);
+        }
+      });
 
-    google.accounts.id.renderButton(document.getElementById('google-btn'), {      
-      size: 'large',
-      shape: 'rectangle',
-      width: '300'
-    })
+      google.accounts.id.renderButton(document.getElementById('google-btn'), {      
+        size: 'large',
+        shape: 'rectangle',
+        width: '300'
+      })
+    }
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => console.log(x));
@@ -81,11 +83,4 @@ export class LoginComponent implements OnInit, AfterViewInit{
     console.log(data);
   }
 
-  addJsToElement(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    this._renderer2.appendChild(document.body, script);
-    return script;
-  }
 }

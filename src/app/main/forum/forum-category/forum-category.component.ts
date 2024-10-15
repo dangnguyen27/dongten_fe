@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CmsService } from 'src/app/services/cms.service';
 
@@ -45,6 +45,8 @@ export class ForumCategoryComponent  implements OnInit, AfterViewInit {
   constructor(
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
+    @Inject(PLATFORM_ID) private platformId: any,
+    
     private readonly activedRoute: ActivatedRoute,
     private readonly cmsService: CmsService
   ) {
@@ -70,10 +72,13 @@ export class ForumCategoryComponent  implements OnInit, AfterViewInit {
   }
 
   addJsToElement(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    this._renderer2.appendChild(document.body, script);
+    let script: any;
+    if (isPlatformBrowser(this.platformId)) {
+      script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = src;
+      this._renderer2.appendChild(document.body, script);      
+    }
     return script;
   }
 

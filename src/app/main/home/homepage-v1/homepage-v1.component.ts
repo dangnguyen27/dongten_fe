@@ -1,5 +1,5 @@
-import { Component, Renderer2, OnInit, Inject, AfterViewInit  } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Renderer2, OnInit, Inject, AfterViewInit, PLATFORM_ID  } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CmsService } from 'src/app/services/cms.service';
 import { GroupCode, ItemType } from 'src/app/utils/constants';
 import { combineLatest, forkJoin, from, merge, mergeMap } from 'rxjs';
@@ -13,6 +13,8 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   constructor(
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
+    @Inject(PLATFORM_ID) private platformId: any,
+    
     private readonly cmsService: CmsService
   ) { }  
   public hotNews = [
@@ -244,10 +246,13 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
   }
 
   addJsToElement(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    this._renderer2.appendChild(document.body, script);
+    let script: any;
+    if (isPlatformBrowser(this.platformId)) {
+      script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = src;
+      this._renderer2.appendChild(document.body, script);      
+    }
     return script;
   }
 

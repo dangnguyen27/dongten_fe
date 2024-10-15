@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Observable, BehaviorSubject, map } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ObjectLocalStorage } from "../utils/constants";
@@ -9,8 +10,10 @@ export class AuthenService {
     public currentUser: Observable<any> ;
     public currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    constructor(private _http: HttpClient) {
-        const cUser: any = localStorage.getItem(ObjectLocalStorage.CURRENT_USER) ? localStorage.getItem(ObjectLocalStorage.CURRENT_USER) : null;
+    constructor(private _http: HttpClient,
+      @Inject(PLATFORM_ID) private platformId: any,
+    ) {
+        const cUser: any = isPlatformBrowser(this.platformId) ? ( localStorage.getItem(ObjectLocalStorage.CURRENT_USER) ? localStorage.getItem(ObjectLocalStorage.CURRENT_USER) : null ) : null;
         this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(cUser));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -21,11 +24,14 @@ export class AuthenService {
     }
 
     set theUser(value: any) {
+      if(isPlatformBrowser(this.platformId)) {
         this.currentUserSubject.next(value); // this will make sure to tell every subscriber about the change.
         localStorage.setItem(ObjectLocalStorage.CURRENT_USER, value);
         if (!value) {
             localStorage.removeItem(ObjectLocalStorage.CURRENT_USER);
         }
+      }
+        
     }
 
     login(data: any) {
@@ -42,7 +48,9 @@ export class AuthenService {
           // login successful if there's a jwt token in the response
           if (user && user.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem(ObjectLocalStorage.CURRENT_USER, JSON.stringify(user));
+            if(isPlatformBrowser(this.platformId)) {
+              localStorage.setItem(ObjectLocalStorage.CURRENT_USER, JSON.stringify(user));
+            }
 
             // Display welcome toast!
             // setTimeout(() => {
