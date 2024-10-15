@@ -15,7 +15,7 @@ import { SharePodcastComponentModule } from '../share-podcast-component/share-po
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: PodcastComponent
   },
   {

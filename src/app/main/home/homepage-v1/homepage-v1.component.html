@@ -85,11 +85,11 @@
         <div class="col-12 col-md-3 pe-md-5" *ngIf="homeData[groupCode.TOP_HOME_NOIBAT]">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.TOP_HOME_NOIBAT].group.title }}</h2>
-                <img src="/assets/images/icons/hot_news.svg" alt="" class="ms-2">
+                <img src="/assets/images/icons/hot_news.svg" alt="" class="ms-2 ">
             </div>
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let item of homeData[groupCode.TOP_HOME_NOIBAT].items">
-                    <img src="{{ item.image }}" alt="" class="img-thumb-large rounded img-fluid">
+                    <img src="{{ item.image }}" alt="" class="img-thumb-large rounded img-fluid w-100">
                     <h2 class="fw-bold mt-2 title-2-lines"><a class="text-black" href="#" routerLink="/{{item.slug}}">{{ item.title }}</a></h2>
                     <p class="text-body">{{ item.description }}</p>
                     <div>
@@ -104,7 +104,7 @@
                 <img src="/assets/images/icons/news.svg" alt="" class="ms-2">
             </div>
             <div class="row">
-                <div class="col-6 col-md-4" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(0,3)">
+                <div class="col-6 col-md-4" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(0, isMobile ? 4 : 3)">
                     <div class="card p-3 border-0" >
                         <img src="{{ item.image }}" class="img-thumb-large card-img-top rounded" alt="...">
                         <span *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy" class="badge rounded-pill text-bg-warning me-2">
@@ -123,7 +123,7 @@
             </div>
             <div class="row mt-5 custom-scrollbar" style="height: 300px;" *ngIf="homeData[groupCode.TOP_HOME_NEWEST].items.length > 3">
                 <div class="col-12">
-                    <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice(3, homeData[groupCode.TOP_HOME_NEWEST].items.length)">
+                    <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice( isMobile ? 4 : 3, homeData[groupCode.TOP_HOME_NEWEST].items.length)">
                         <div class="col-2">
                             <img src="{{ item.image }}" alt="" class="img-thumb-small rounded img-fluid">
                         </div>
@@ -183,7 +183,7 @@
                 <div class="list">
                     <div class="list-header ps-3 pe-3 pt-4 pb-4 overflow-hidden">
                         <span class=" text-secondary float-start">Mới nhất</span>
-                        <a href="#" routerLink="/podcast" class="float-end text-secondary">Xem tất cả</a>
+                        <a href="#" routerLink="/podcast/home" class="float-end text-secondary">Xem tất cả</a>
                     </div>
                     <div class="list-items ps-3 pe-3 custom-scrollbar" style="height: 300px;">
                         <div class="row" *ngFor="let item of newestPodcast">
@@ -209,17 +209,17 @@
                 </div>
             </div>
             <div class="list-more mt-4">
-                <h3 class="fw-bold mb-3">Nghe nhiều hơn <span>
+                <h3 class="fw-bold mb-3"> <a href="#" class="text-black" routerLink="/podcast/categories"> Nghe nhiều hơn <span>
                     <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 1L7 7L1 13" stroke="#0A0A0A" stroke-width="2"/>
                         </svg>
                         
-                </span></h3>
+                </span></a></h3>
                 <ngx-slick-carousel class="carousel" 
                         #slickModal="slick-carousel" 
                         [config]="slideConfig" 
                         >
-                        <div ngxSlickItem class="slide me-2" *ngFor="let item of newest">
+                        <div ngxSlickItem class="slide me-2" *ngFor="let item of categoriesPosdcast">
                             <img src="{{ item.image }}" alt="" class="img-fluid rounded">
                             <h4 class="fw-bold mt-2">{{ item.title }}</h4>
                         </div>
@@ -228,7 +228,7 @@
         </div>
     </div>
 </div>
-    <div class="mt-5 position-relative overflow-hidden animate-slide" style="height: 800px;">
+    <div *ngIf="!isMobile" class="mt-5 position-relative overflow-hidden animate-slide" style="height: 800px;">
         <div class="position-absolute color-over">
 
         </div>
@@ -320,7 +320,7 @@
     </div>
 <div class="container mt-5" style="padding-bottom: 150px;">
     <div class="row linhdao g-5">
-        <div class="col-6" *ngIf="homeData[groupCode.HOME_LINHDAO_POST] && homeData[groupCode.HOME_LINHDAO_POST].items">
+        <div class="col-12 col-md-6" *ngIf="homeData[groupCode.HOME_LINHDAO_POST] && homeData[groupCode.HOME_LINHDAO_POST].items">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.HOME_LINHDAO_POST].group.title }} </h2>
                 <img src="/assets/images/icons/linhdao.svg" alt="" class="ms-2">
@@ -369,7 +369,7 @@
             
         </div>
 
-        <div class="col-6" *ngIf="homeData[groupCode.HOME_SUYTU_POST] && homeData[groupCode.HOME_SUYTU_POST].items">
+        <div class="col-12 col-md-6" *ngIf="homeData[groupCode.HOME_SUYTU_POST] && homeData[groupCode.HOME_SUYTU_POST].items">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.HOME_SUYTU_POST].group.title }} </h2>
                 <img src="/assets/images/icons/suytu.svg" alt="" class="ms-2">
@@ -425,7 +425,7 @@
                 <img src="/assets/images/icons/news.svg" alt="" class="ms-2">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             
             <div class="row" *ngIf="homeData[groupCode.HOME_NEWS].items[0]">
                 <div class="col-12">
@@ -444,7 +444,7 @@
                 
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="row mt-3 custom-scrollbar" style="height: 380px;">
                 <div class="col-12">
                     <div class="row" *ngFor="let item of homeData[groupCode.HOME_NEWS].items; index as i">
@@ -478,7 +478,7 @@
             <img src="/assets/images/phut-cau-nguyen.png" alt="" class="rounded w-100">
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-4" *ngIf="!isMobile">
         <div class="col-12">
             <div class="d-flex align-items-start" *ngFor="let childList of dataLienKetOrder">
                 <div class="flex-fill " *ngFor="let item of childList.items">
@@ -486,6 +486,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row mt-4" *ngIf="isMobile">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" *ngFor="let childList of dataLienKetOrder">
+            <div ngxSlickItem class="slide me-2" *ngFor="let item of childList.items">
+                <img class="" src="{{ item.image }}" alt="" class="w-100" >
+            </div>
+        </ngx-slick-carousel>
     </div>
 </div>
 

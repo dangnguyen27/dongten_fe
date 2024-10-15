@@ -1,8 +1,9 @@
 import { Component, Renderer2, OnInit, Inject, AfterViewInit, PLATFORM_ID  } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CmsService } from 'src/app/services/cms.service';
-import { GroupCode, ItemType } from 'src/app/utils/constants';
+import { GroupCode, ItemType, TaxonomyType } from 'src/app/utils/constants';
 import { combineLatest, forkJoin, from, merge, mergeMap } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service';
 @Component({
   selector: 'app-homepage-v1',
   templateUrl: './homepage-v1.component.html',
@@ -10,13 +11,17 @@ import { combineLatest, forkJoin, from, merge, mergeMap } from 'rxjs';
 })
 export class HomepageV1Component implements OnInit, AfterViewInit {
 
+  isMobile: boolean = false;
   constructor(
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document,
     @Inject(PLATFORM_ID) private platformId: any,
+    private readonly commonService: CommonService,
     
     private readonly cmsService: CmsService
-  ) { }  
+  ) { 
+    this.isMobile = this.commonService.isMobile()
+  }  
   public hotNews = [
     {
       title: "25 dieu nguoi ta khong hieu ban lam gi",
@@ -160,9 +165,27 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
 
   dataLienKetOrder: any[] = [];
 
-  slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false};
+  slideConfig = {"slidesToShow": 5, "slidesToScroll": 2, "dots": false, "arrows": false,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
   slideConfigMainSlide = { "dots": true, "arrows": false};
 
+  categoriesPosdcast: any[] = [];
   public homeData: any = {};
   groupCode = GroupCode;
   newestPodcast: any;
@@ -220,6 +243,10 @@ export class HomepageV1Component implements OnInit, AfterViewInit {
         })
       }
     }
+
+    this.cmsService.getListTaxonomy({page_size: -1, type: TaxonomyType.PODCAST}).subscribe(res => {
+      this.categoriesPosdcast = res.data.items;
+    })
 
     this.cmsService.getNewestPodcast({page_size: 10}).subscribe(res => {
       this.newestPodcast = res.data.items;

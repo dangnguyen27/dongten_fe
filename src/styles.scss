@@ -463,3 +463,12 @@ body {
 	}
   
   }	
+
+  @media all and (max-width: 480px) {
+	.pt-100 {
+		padding-top: 30px !important;
+	}
+	.pb-200 {
+		padding-bottom: 30px !important;
+	}
+  }

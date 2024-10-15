@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-3" *ngFor="let item of newest" >
+        <div class="col-6 col-md-3" *ngFor="let item of newest" >
             <div class="podcast-newest-item">
                 <div routerLink="/podcast/{{ item.id }}">
                     <img src="{{ item.image }}" alt="" class="rounded w-100 mb-2">
