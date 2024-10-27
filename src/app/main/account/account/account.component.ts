@@ -22,7 +22,8 @@ export class AccountComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.currentUser = this.authenService.currentUserValue		
+		this.currentUser = this.authenService.currentUserValue;
+		this.getData();
 	}
 
 	getData() {

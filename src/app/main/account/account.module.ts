@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharePipeModule } from 'src/app/pipes/share-pipe.module';
 import { FacebookLoginProvider, GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from 'src/app/helpers/auth.guards';
 
 const routes: Routes = [
   {
@@ -14,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -28,7 +31,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharePipeModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    NgbNavModule
   ],
   providers: [
     {

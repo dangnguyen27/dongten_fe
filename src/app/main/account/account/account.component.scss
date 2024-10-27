@@ -5,36 +5,36 @@
   .tabbable-line > .nav-tabs > li {
     margin-right: 2px;
   }
-  .tabbable-line > .nav-tabs > li > a {
+  .tabbable-line > .nav-tabs > li > button {
     border: 0;
     margin-right: 0;
     color: #737373;
   }
-  .tabbable-line > .nav-tabs > li > a > i {
+  .tabbable-line > .nav-tabs > li > button > i {
     color: #a6a6a6;
   }
   .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
     border-bottom: 4px solid #fbcdcf;
   }
-  .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  .tabbable-line > .nav-tabs > li.open > button, .tabbable-line > .nav-tabs > li:hover > button {
     border: 0;
     background: none !important;
     color: #333333;
   }
-  .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  .tabbable-line > .nav-tabs > li.open > button > i, .tabbable-line > .nav-tabs > li:hover > button > i {
     color: #a6a6a6;
   }
   .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
     margin-top: 0px;
   }
-  .tabbable-line > .nav-tabs > li.active {
+  .tabbable-line > .nav-tabs > li:has(> button.active) {
     border-bottom: 4px solid #f3565d;
     position: relative;
   }
-  .tabbable-line > .nav-tabs > li.active > a {
+  .tabbable-line > .nav-tabs > li.active > button {
     border: 0;
     color: #333333;
   }
-  .tabbable-line > .nav-tabs > li.active > a > i {
+  .tabbable-line > .nav-tabs > li.active > button > i {
     color: #404040;
   }

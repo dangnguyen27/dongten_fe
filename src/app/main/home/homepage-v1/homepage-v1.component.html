@@ -58,7 +58,7 @@
       </section>
 
     <div class="row mt-4">
-        <div class="col-md-6 ">
+        <div class="col-md-6 mb-3">
             <div class="bg-gradient-main-color position-relative rounded pt-5 pb-4 pe-5" style="height: 200px;">
             <img class="position-absolute absolute-center-vertical" width="250px" style="left: -30px" src="/assets/images/logo_golden.png" alt="">
             <div class="float-end text-center">
@@ -70,7 +70,7 @@
         </div>
         </div>
 
-        <div class="col-md-6 ">
+        <div class="col-md-6 mb-3">
             <div class="bg-gradient-black position-relative rounded pt-5 pb-4 pe-5" style="height: 200px;">
             <img class="position-absolute" height="250px" style="left: 30px; bottom: 0;" src="/assets/images/thanh_dong_ten.png" alt="">
             <div class="float-end text-center">
@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="row top_news mt-5">
-        <div class="col-12 col-md-3 pe-md-5" *ngIf="homeData[groupCode.TOP_HOME_NOIBAT]">
+        <div class="col-12 col-md-3 pe-md-5 mb-sm-5" *ngIf="homeData[groupCode.TOP_HOME_NOIBAT]">
             <div class="mb-4 d-flex align-items-end section-title">
                 <h2 class="p-0 m-0 main-title fw-bold">{{ homeData[groupCode.TOP_HOME_NOIBAT].group.title }}</h2>
                 <img src="/assets/images/icons/hot_news.svg" alt="" class="ms-2 ">
@@ -124,10 +124,10 @@
             <div class="row mt-5 custom-scrollbar" style="height: 300px;" *ngIf="homeData[groupCode.TOP_HOME_NEWEST].items.length > 3">
                 <div class="col-12">
                     <div class="row" *ngFor="let item of homeData[groupCode.TOP_HOME_NEWEST].items.slice( isMobile ? 4 : 3, homeData[groupCode.TOP_HOME_NEWEST].items.length)">
-                        <div class="col-2">
+                        <div class="col-md-2 col-4">
                             <img src="{{ item.image }}" alt="" class="img-thumb-small rounded img-fluid">
                         </div>
-                        <div class="col-10">
+                        <div class="col-md-10 col-8">
                             <div class="mb-1" *ngIf="item.item_taxonomies && item.item_taxonomies[0] && item.item_taxonomies[0].taxonomy">
                                 <span class="text-main-color">{{ item.item_taxonomies[0].taxonomy.title }}</span>
                             </div>

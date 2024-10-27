@@ -27,11 +27,12 @@ export class LoginComponent implements OnInit, AfterViewInit{
     // this.addJsToElement("/assets/js/gsi.js");
   }
   ngOnInit(): void {
-    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/forum';
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/forum/home';
     if (isPlatformBrowser(this.platformId)) {
       google.accounts.id.initialize({
         client_id: environment.google_oauth_client_id,
         callback: (res: any) => {
+          console.log(res);
           //call api login
           const data = {
             type: 'google',
