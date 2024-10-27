@@ -57,4 +57,8 @@ export class CmsService {
   getSingplePodcastEpisode(params: any = null) {
     return this._http.get<any>(`${environment.apiUrl}/podcast/single-episode`, {params: params});
   }
+
+  getNotifications(params: any = null) {
+    return this._http.get<any>(`${environment.apiUrl}/user/notifications`, {params: params});
+  }
 }

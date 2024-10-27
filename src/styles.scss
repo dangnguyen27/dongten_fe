@@ -226,6 +226,12 @@ body {
 		-webkit-box-orient: vertical;
 	}
 
+	.badge-item-category {
+		position: absolute;
+		top: 25px;
+		left: 25px;
+	  }
+
 	.text-3-lines {
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -470,5 +476,17 @@ body {
 	}
 	.pb-200 {
 		padding-bottom: 30px !important;
+	}
+  }
+
+  .top_news {
+	.carousel-indicators {
+	  bottom: -35px !important;
+	  [data-bs-target] {
+		background-color: #C2C2C2;
+	  }
+	  .active {
+		background-color: #900D14;
+	  }
 	}
   }

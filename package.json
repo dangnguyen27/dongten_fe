@@ -13,6 +13,7 @@
     "dev:ssr": "ng run dongten:serve-ssr",
     "serve:ssr": "node dist/dongten/server/main.js",
     "build:ssr": "ng build && ng run dongten:server",
+    "build:ssr:test": "ng build  --build-optimizer --optimization --configuration test && ng run dongten:server",
     "prerender": "ng run dongten:prerender"
   },
   "private": true,

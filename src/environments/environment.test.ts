@@ -1,8 +1,8 @@
 export const environment = {
     production: true,
     hmr: false,
-    apiUrl: 'https://sandbox-api.dongten.net/api', 
-    socketUrl: 'ws://localhost:3006',
+    apiUrl: 'https://api.dongten.dev/api', 
+    socketUrl: 'ws://45.76.180.254:3006',
 
     google_oauth_client_id: '369733021691-reiknt8t9jh4je1gs1p0cv7h8799scug.apps.googleusercontent.com',
      

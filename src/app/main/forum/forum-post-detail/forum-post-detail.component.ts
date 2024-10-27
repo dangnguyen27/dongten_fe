@@ -108,7 +108,13 @@ export class ForumPostDetailComponent implements OnInit, OnDestroy {
       item_id: this.data.id,
       body: this.commentBody
     }
+    this.commentBody = ''
     console.log("onPostComment", data);
+    this.cmsService.postComment(data).subscribe(res => {
+      this.getData();
+    }, error => {
+      console.log(error);
+    })
   }
 
 }

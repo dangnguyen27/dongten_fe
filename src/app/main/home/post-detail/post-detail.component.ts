@@ -11,6 +11,7 @@ import { ItemType, TaxonomyType } from 'src/app/utils/constants';
 export class PostDetailComponent implements OnInit {
 	slug: any;
 	data: any;
+	listRelated: any;
 	contentHeader = {
 		headerTitle: 'Danh sách',
 		actionButton: true,
@@ -47,7 +48,12 @@ export class PostDetailComponent implements OnInit {
 				name: listCategory[0].title,
 				isLink: true,
 				link: '/category/' + listCategory[0].slug
-			})
+			});
+			if(listCategory && listCategory[0]) {
+				this.cmsService.getItemsByTaxonomy({page_size: 3, slug: listCategory[0].taxonomy.slug, item_type: ItemType.post }).subscribe(res => {
+					this.listRelated = res.data.items;
+				})
+			}
 		})
 	}
 
