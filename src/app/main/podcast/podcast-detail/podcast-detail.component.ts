@@ -9,6 +9,7 @@ import { CmsService } from 'src/app/services/cms.service';
 })
 export class PodcastDetailComponent implements OnInit {
 	public item = {
+		id: '123',
 		title: "VỪA ĐIẾC VỪA NGỌNG | MANNA CN23TNB",
 		description: "Nunc luctus gravida interdum. Phasellus leo leo, tristique quis interdum pretium, maximus in",
 		duration: 815597,
@@ -49,6 +50,9 @@ export class PodcastDetailComponent implements OnInit {
 
 	slug: any;
 	detailItem: any;
+	selectedIdEpisode: any;
+  	isShowPlayer: boolean = false;
+
 	constructor(
 		private readonly cmsService: CmsService,
 		private readonly activedRoute: ActivatedRoute
@@ -56,6 +60,14 @@ export class PodcastDetailComponent implements OnInit {
 		this.slug = this.activedRoute.snapshot.paramMap.get('slug');
 	}
 	
+	onShowPlayer(id: any) {
+		this.selectedIdEpisode = id;
+		this.isShowPlayer = true;
+	}
+
+	closePlayer() {
+		this.isShowPlayer = false;
+	}
 
 	ngOnInit(): void {
 		this.getData();

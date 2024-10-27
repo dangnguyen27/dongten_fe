@@ -7,13 +7,13 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a class="text-secondary" routerLink="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a  class="text-secondary" href="/podcast">Podcast</a></li>
+                    <li class="breadcrumb-item"><a  class="text-secondary" routerLink="/podcast/home">Podcast</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ item.title }}</li>
                 </ol>
             </nav>
             <h2 class="fw-bold mb-3">{{ item.title }}</h2>
             <div class="d-flex">
-                <button class="btn btn-play me-4">
+                <button class="btn btn-play me-4"  (click)="onShowPlayer(slug)">
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.2111 7.60557L2.73666 1.86833C1.93878 1.46939 1 2.04958 1 2.94164V14.0584C1 14.9504 1.93878 15.5306 2.73666 15.1317L14.2111 9.39443C14.9482 9.0259 14.9482 7.9741 14.2111 7.60557Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -88,4 +88,15 @@ Maecenas venenatis quam nulla. Vivamus vel tortor neque. Mauris et convallis lec
             </div>
         </div>
     </div>
+</div>
+
+<div class="bottom_pleyer w-100" *ngIf="isShowPlayer" style="position: fixed; bottom: 0;">
+    <button class="btn btn-secondary" (click)="closePlayer()" style="position: absolute; right: 0;">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 1L1 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L16 16" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+    </button>
+    <app-player-audio [id]="selectedIdEpisode"></app-player-audio>
 </div>
